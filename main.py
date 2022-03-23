@@ -11,8 +11,7 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage,
 )
 import os
-import requests
-from bs4 import BeautifulSoup
+
 import tenkii as tnk
 app = Flask(__name__)
 

@@ -1,5 +1,5 @@
 import requests
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup4
 
   #YAHOO天気のHTML情報をすべて取得
 def Weather(AreaCode):
@@ -15,4 +15,5 @@ def Weather(AreaCode):
     print(rs[0] + "の天気は" + rs[1] + "、明日の天気は" + rs[19] + "です。")
     result = rs[0] + "の天気は" + rs[1] + "、明日の天気は" + rs[19] + "です。"
     return result
+
 print(Weather(6110))
