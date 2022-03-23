@@ -1,5 +1,5 @@
 # バスのバブルメッセージ
-def bus:
+def bus():
     {
   "type": "bubble",
   "body": {
