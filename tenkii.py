@@ -1,5 +1,5 @@
-#import requests
-#from bs4 import BeautifulSoup
+import requests
+from bs4 import BeautifulSoup
 
   #YAHOO天気のHTML情報をすべて取得
 def Weather(AreaCode):
