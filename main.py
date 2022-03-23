@@ -23,6 +23,7 @@ handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
 @app.route("/callback", methods=['POST'])
 
+"""
 a = {
   "type": "bubble",
   "body": {
@@ -40,6 +41,8 @@ a = {
     ]
   }
 }
+
+"""
 
 def callback():
     # get X-Line-Signature header value
