@@ -49,14 +49,14 @@ def handle_message(event):
     print("Hello World")
     print(event.message.text)
     if event.message.text == "天気":
-        line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text="天気だね"))
+        # line_bot_api.reply_message(
+        # event.reply_token,
+        # TextSendMessage(text="天気だね"))
         weather = tnk.Weather(6110)
         print(weather)
         line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text="test"))
+        TextSendMessage(text=weather))
         
 
     line_bot_api.reply_message(
