@@ -11,7 +11,7 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage,
 )
 import os
-
+import tenkii as tnk
 app = Flask(__name__)
 
 #環境変数取得
@@ -46,11 +46,15 @@ def callback():
 def handle_message(event):
     print("Hello World")
     print(event.message.text)
-    if event.message.text == "バス":
+    if event.message.text == "天気":
         line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text="バスだね"))
+        TextSendMessage(text="天気だね"))
+        line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text=tnk.Weather(6110)))
         
+
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text="hello"))

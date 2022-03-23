@@ -11,6 +11,8 @@ def Weather(AreaCode):
     #strip()で文字列前後の空白を削除
     rs = [i.strip() for i in rs.text.splitlines()]
     rs = [i for i in rs if i != ""]
+
     print(rs[0] + "の天気は" + rs[1] + "、明日の天気は" + rs[19] + "です。")
- 
-Weather(6110)
+    result = rs[0] + "の天気は" + rs[1] + "、明日の天気は" + rs[19] + "です。"
+    return result
+print(Weather(6110))
