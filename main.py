@@ -46,6 +46,11 @@ def callback():
 def handle_message(event):
     print("Hello World")
     print(event.message.text)
+    if event.message.text == "バス":
+        line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text="バスだね"))
+        
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text="hello"))
