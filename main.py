@@ -48,7 +48,7 @@ def callback():
 def handle_message(event):
     print("Hello World")
     print(event.message.text)
-    if event.message.text == "天気":
+    if event.message.text == "京都女子大学の天気":
         # line_bot_api.reply_message(
         # event.reply_token,
         # TextSendMessage(text="天気だね"))
