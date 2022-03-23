@@ -24,17 +24,17 @@ handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 @app.route("/callback", methods=['POST'])
 
 a = {
-  "type": "bubble", // ①
-  "body": { // ②
-    "type": "box", // ③
-    "layout": "horizontal", // ④
-    "contents": [ // ⑤
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "horizontal",
+    "contents": [
       {
-        "type": "text", // ⑥
+        "type": "text",
         "text": "Hello,"
       },
       {
-        "type": "text", // ⑥
+        "type": "text",
         "text": "World!"
       }
     ]
