@@ -61,7 +61,7 @@ def handle_message(event):
 
     if event.message.text == "バスの時刻":
         # que_bus = FlexSendMessage.new_from_json_dict(bus.busJson())
-        with open('C:\pg\population.json') as f:
+        with open('bus.json') as f:
             que_bus = json.load(f)
             print("ここ見てね")
             print(que_bus)
