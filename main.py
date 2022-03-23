@@ -15,32 +15,14 @@ import os
 app = Flask(__name__)
 
 #環境変数取得
-YOUR_CHANNEL_ACCESS_TOKEN = os.environ["YOUR_CHANNEL_ACCESS_TOKEN"]
-YOUR_CHANNEL_SECRET = os.environ["YOUR_CHANNEL_SECRET"]
+channel_access_token = str(os.getenv('DToGktvSOYh/+Ox7dyiDQICKEVWiEdqVBE6LNlX3xw1hQFwmn1VLr0WBkAloWiM6u+mEiivWC84CMu+0unFdYTv0RsM/vluQc/B4rFjcLQwxv1+BabvDDg9vOux4QjadKmvbBEVk3+Pn9Vg5fMtoagdB04t89/1O/w1cDnyilFU='))
+YOUR_CHANNEL_SECRET = str(os.getenv("ebba5792f2b6f62c5a8d12142e07af10"))
 
-line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
+line_bot_api = LineBotApi(channel_access_token)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
-
 @app.route("/callback", methods=['POST'])
 
 
-# a = {
-#   "type": "bubble",
-#   "body": {
-#     "type": "box",
-#     "layout": "horizontal",
-#     "contents": [
-#       {
-#         "type": "text",
-#         "text": "Hello,"
-#       },
-#       {
-#         "type": "text",
-#         "text": "World!"
-#       }
-#     ]
-#   }
-# }
 
 
 def callback():
@@ -62,6 +44,7 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+    print("Hello World")
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text="hello"))
