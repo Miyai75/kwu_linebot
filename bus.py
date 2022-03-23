@@ -12,7 +12,7 @@ def bus():
           "weight": "regular",
           "size": "lg",
           "color": "#000000FF",
-          "wrap": True,
+          "wrap": true,
           "contents": []
         }
       ]

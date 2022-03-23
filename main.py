@@ -59,10 +59,11 @@ def handle_message(event):
 
     if event.message.text == "バスの時刻":
         que_bus = bus.bus()
-        print(que_bus + "だよ")
+        print("ここ見てね")
+        print(que_bus)
         line_bot_api.reply_message(
         event.reply_token,
-        [TextSendMessage(text="バスだね"),TextSendMessage(text=que_bus)])
+        [TextSendMessage(text="バスだね"),TextSendMessage(que_bus)])
         
 
     line_bot_api.reply_message(
