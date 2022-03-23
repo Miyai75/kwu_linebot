@@ -62,7 +62,8 @@ def handle_message(event):
     if event.message.text == "バスの時刻":
         # que_bus = FlexSendMessage.new_from_json_dict(bus.busJson())
         jsonopen = open('bus.json', 'r')
-        que_bus = json.load(jsonopen)
+        tmp = json.load(jsonopen)
+        que_bus = FlexSendMessage.new_from_json_dict(tmp)
         print("ここ見てね")
         print(que_bus)
         line_bot_api.reply_message(
