@@ -11,9 +11,8 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage,
 )
 import os
-# import requests
-# from bs4 import BeautifulSoup
 from tenki import tenkii as tnk
+import bus
 app = Flask(__name__)
 
 #環境変数取得
@@ -57,6 +56,13 @@ def handle_message(event):
         line_bot_api.reply_message(
         event.reply_token,
         [TextSendMessage(text="天気だね"),TextSendMessage(text=weather)])
+
+    if event.message.text == "バスの時刻":
+        que_bus = bus.bus()
+        print(que_bus)
+        line_bot_api.reply_message(
+        event.reply_token,
+        [TextSendMessage(text="バスだね"),TextSendMessage(text=que_bus)])
         
 
     line_bot_api.reply_message(
