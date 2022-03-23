@@ -56,7 +56,7 @@ def handle_message(event):
         print(weather)
         line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=weather))
+        [TextSendMessage(text="天気だね"),TextSendMessage(text=weather)])
         
 
     line_bot_api.reply_message(
