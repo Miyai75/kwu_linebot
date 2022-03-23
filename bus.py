@@ -12,7 +12,7 @@ def busJson():
         "weight": "regular",
         "size": "lg",
         "color": "#000000FF",
-        "wrap": true,
+        "wrap": True,
         "contents": []
       }
     ]
