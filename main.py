@@ -13,7 +13,7 @@ from linebot.models import (
 import os
 # import requests
 # from bs4 import BeautifulSoup
-import tenkii as tnk
+from tenki import tenkii as tnk
 app = Flask(__name__)
 
 #環境変数取得
