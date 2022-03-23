@@ -8,10 +8,10 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage,
+    MessageEvent, TextMessage, TextSendMessage, FlexSendMessage
 )
 import os
-import json
+import bus
 from tenki import tenkii as tnk
 
 app = Flask(__name__)
@@ -59,13 +59,13 @@ def handle_message(event):
         [TextSendMessage(text="天気だね"),TextSendMessage(text=weather)])
 
     if event.message.text == "バスの時刻":
-        file_open = open('bus.json','r')
-        que_bus = json.load(file_open)
+        que_bus = FlexSendMessage.new_from_json_dict(bus.busJson())
         print("ここ見てね")
         print(que_bus)
         line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text="バスだね"))
+        TextSendMessage(text="バスだね"),
+        messages = que_bus)
         
 
     line_bot_api.reply_message(

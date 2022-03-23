@@ -1,4 +1,4 @@
-{
+busload = {
     "type": "bubble",
     "body": {
       "type": "box",
