@@ -11,6 +11,7 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage, FlexSendMessage
 )
 import os
+import json
 import bus
 from tenki import tenkii as tnk
 
@@ -59,12 +60,14 @@ def handle_message(event):
         [TextSendMessage(text="天気だね"),TextSendMessage(text=weather)])
 
     if event.message.text == "バスの時刻":
-        que_bus = FlexSendMessage.new_from_json_dict(bus.busJson())
-        print("ここ見てね")
-        print(que_bus)
-        line_bot_api.reply_message(
-        event.reply_token,
-        messages = que_bus)
+        # que_bus = FlexSendMessage.new_from_json_dict(bus.busJson())
+        with open('C:\pg\population.json') as f:
+            que_bus = json.load(f)
+            print("ここ見てね")
+            print(que_bus)
+            line_bot_api.reply_message(
+            event.reply_token,
+            messages = que_bus)
         
 
     line_bot_api.reply_message(
