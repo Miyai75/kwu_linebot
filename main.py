@@ -15,10 +15,10 @@ import os
 app = Flask(__name__)
 
 #環境変数取得
-channel_access_token = str(os.getenv('DToGktvSOYh/+Ox7dyiDQICKEVWiEdqVBE6LNlX3xw1hQFwmn1VLr0WBkAloWiM6u+mEiivWC84CMu+0unFdYTv0RsM/vluQc/B4rFjcLQwxv1+BabvDDg9vOux4QjadKmvbBEVk3+Pn9Vg5fMtoagdB04t89/1O/w1cDnyilFU='))
-YOUR_CHANNEL_SECRET = str(os.getenv("ebba5792f2b6f62c5a8d12142e07af10"))
+YOUR_CHANNEL_ACCESS_TOKEN = os.environ('YOUR_CHANNEL_ACCESS_TOKEN')
+YOUR_CHANNEL_SECRET = os.environ("YOUR_CHANNEL_SECRET")
 
-line_bot_api = LineBotApi(channel_access_token)
+line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 @app.route("/callback", methods=['POST'])
 
