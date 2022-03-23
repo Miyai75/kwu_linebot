@@ -64,7 +64,6 @@ def handle_message(event):
         print(que_bus)
         line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text="バスだね"),
         messages = que_bus)
         
 
