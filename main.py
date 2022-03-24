@@ -45,7 +45,6 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    bus_scene = 0
     print("Hello World")
     print(event.message.text)
     if event.message.text == "京都女子大学の天気":
@@ -62,7 +61,7 @@ def handle_message(event):
     #     line_bot_api.reply_message(
     #     event.reply_token,
     #     [TextSendMessage(text="進路 履修 インターンシップ 奨学金 各種証明書に関する対応窓口に関する情報を教えます！"),TextSendMessage(text=input("何について知りたいですか？"))])
-
+    #     word = input()
     #     df = pd.read_csv("center2.csv")#csvファイルを読み込み
     #     #print(list(df.loc[1]))
 
@@ -105,7 +104,7 @@ def handle_message(event):
         event.reply_token,
         [TextSendMessage(text="登校しますか？下校しますか？"),TextSendMessage(text="1.市バス 2.プリンセスバス")])
         bus_scene = 1
-        
+
     if bus_scene == 1:
         bus_choices = {1:"市バス", 2:"プリンセスバス"} 
         if event.message.text in bus_choices:
@@ -119,9 +118,6 @@ def handle_message(event):
     event.reply_token,
     TextSendMessage(text="hello"))
 
-
-def BusMessage():
-    print("動いているよ")
 
 if __name__ == "__main__":
 #    app.run()
