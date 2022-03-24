@@ -40,3 +40,4 @@ class BusTime:
       
 bustime = BusTime(0,0,5)
 bustime.bus()
+print()

@@ -12,7 +12,7 @@ from linebot.models import (
 )
 import os
 import json
-from basu import main as bs
+# from basu import main as bs
 import pandas as pd
 from tenki import tenkii as tnk
 
