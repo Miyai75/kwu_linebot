@@ -62,7 +62,7 @@ def handle_message(event):
         # jsonopen = open('bus.json', 'r')
         # tmp = json.load(jsonopen)
         
-        payload = {
+        payload = """{
         "type": "flex",
         "altText": "Flex Message",
         "contents": {
@@ -217,8 +217,9 @@ def handle_message(event):
             }
         }
         }
+        """
 
-        que_bus = FlexSendMessage.new_from_json_dict(payload)
+        que_bus = json.loads(payload)
         print("ここ見てね")
         print(que_bus)
         line_bot_api.reply_message(
