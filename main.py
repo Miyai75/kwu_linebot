@@ -80,47 +80,47 @@ def handle_message(event):
             #print(data)
             #print('--------')
             
-        if event.message.text == "進路":
-            a = list(df.loc[0])
-            line_bot_api.reply_message(
-            event.reply_token,
-            [TextSendMessage(text=a)])
+        # if event.message.text == "進路":
+        #     a = list(df.loc[0])
+        #     line_bot_api.reply_message(
+        #     event.reply_token,
+        #     [TextSendMessage(text=a)])
                 
-        if event.message.text == "履修":
-            a = list(df.loc[1])
-            line_bot_api.reply_message(
-            event.reply_token,
-            [TextSendMessage(text=a)])
+        # if event.message.text == "履修":
+        #     a = list(df.loc[1])
+        #     line_bot_api.reply_message(
+        #     event.reply_token,
+        #     [TextSendMessage(text=a)])
             
-        if event.message.text == "インターンシップ":
-            a = list(df.loc[2])
-            line_bot_api.reply_message(
-            event.reply_token,
-            [TextSendMessage(text=a)])
+        # if event.message.text == "インターンシップ":
+        #     a = list(df.loc[2])
+        #     line_bot_api.reply_message(
+        #     event.reply_token,
+        #     [TextSendMessage(text=a)])
         
-        if event.message.text == "学費":
-            a = list(df.loc[3])
-            line_bot_api.reply_message(
-            event.reply_token,
-            [TextSendMessage(text=a)])
+        # if event.message.text == "学費":
+        #     a = list(df.loc[3])
+        #     line_bot_api.reply_message(
+        #     event.reply_token,
+        #     [TextSendMessage(text=a)])
         
-        if event.message.text == "奨学金":
-            a = list(df.loc[4])
-            line_bot_api.reply_message(
-            event.reply_token,
-            [TextSendMessage(text=a)])
+        # if event.message.text == "奨学金":
+        #     a = list(df.loc[4])
+        #     line_bot_api.reply_message(
+        #     event.reply_token,
+        #     [TextSendMessage(text=a)])
         
-        if event.message.text == "各種証明書":
-            a = list(df.loc[5])
-            line_bot_api.reply_message(
-            event.reply_token,
-            [TextSendMessage(text=a)])
+        # if event.message.text == "各種証明書":
+        #     a = list(df.loc[5])
+        #     line_bot_api.reply_message(
+        #     event.reply_token,
+        #     [TextSendMessage(text=a)])
 
-    # if event.message.text == "バスの時刻":
-    #     print("フラグ")
-    #     line_bot_api.reply_message(
-    #     event.reply_token,
-    #     [TextSendMessage(text="登校しますか？下校しますか？"),TextSendMessage(text="「〇限に市バスで登校」\n「市バスで下校」\n「〇限にプリンセスバスで登校」\n「プリンセスバスで下校」\nのどれかを入力してください")])
+    if event.message.text == "バスの時刻":
+        print("フラグ")
+        line_bot_api.reply_message(
+        event.reply_token,
+        [TextSendMessage(text="登校しますか？下校しますか？"),TextSendMessage(text="「〇限に市バスで登校」\n「市バスで下校」\n「〇限にプリンセスバスで登校」\n「プリンセスバスで下校」\nのどれかを入力してください")])
 
     # if event.message.text == "1限に市バスで登校":
     #     print("toukou")

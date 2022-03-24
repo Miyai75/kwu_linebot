@@ -89,7 +89,7 @@
                   "flex": 5,
                   "size": "sm",
                   "color": "#666666",
-                  "wrap": True
+                  "wrap":true
                 }
               ]
             },
@@ -111,7 +111,7 @@
                   "flex": 5,
                   "size": "sm",
                   "color": "#666666",
-                  "wrap": True
+                  "wrap": true
                 }
               ]
             }
