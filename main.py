@@ -13,7 +13,7 @@ from linebot.models import (
 import os
 import json
 import bus
-import panda as pd
+import pandas as pd
 from tenki import tenkii as tnk
 
 app = Flask(__name__)
