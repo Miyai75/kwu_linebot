@@ -44,7 +44,12 @@ def callback():
 
 
 @handler.add(MessageEvent, message=TextMessage)
+# def __init__(self, name): # インスタンス化されて渡ってくる値を受ける変数を定義します
+#     # インスタンス変数（属性の初期化）
+#     self.name = name # 実行順③
+#     print("コンストラクタが呼ばれました") # # 実行順④]
 def handle_message(event):
+    bus_scene = 0
     print("Hello World")
     print(event.message.text)
     if event.message.text == "京都女子大学の天気":
@@ -60,7 +65,7 @@ def handle_message(event):
     if event.message.text == "大学生活に関する窓口":
         line_bot_api.reply_message(
         event.reply_token,
-        [TextSendMessage(text="進路 履修 インターンシップ 奨学金 各種証明書に関する対応窓口に関する情報を教えます！"),TextSendMessage(text=input("何について知りたいですか？"))])
+        [TextSendMessage(text="進路 履修 インターンシップ 奨学金 各種証明書に関する対応窓口に関する情報を教えます！"),TextSendMessage(text="何について知りたいですか？")])
         word = input()
         df = pd.read_csv("center2.csv")#csvファイルを読み込み
         #print(list(df.loc[1]))
