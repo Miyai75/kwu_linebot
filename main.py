@@ -46,7 +46,7 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 
-def handle_message(event,self):
+def handle_message(event):
     print("Hello World")
     print(event.message.text)
     if event.message.text == "京都女子大学の天気":
@@ -103,7 +103,9 @@ def handle_message(event,self):
         print("フラグ")
         line_bot_api.reply_message(
         event.reply_token,
-        [TextSendMessage(text="登校しますか？下校しますか？"),TextSendMessage(text="1.市バス 2.プリンセスバス")])
+        [TextSendMessage(text="登校しますか？下校しますか？"),TextSendMessage(text="「市バスで登校」\n「市バスで下校」\n「プリンセスバスで登校」\n「プリンセスバスで下校」\nのどれかを入力してください")])
+
+    # if event.message.text == "市バスで投稿":
 
 
     # if self.bus_scene == 1:
