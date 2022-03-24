@@ -221,8 +221,8 @@ def handle_message(event):
         que_bus = FlexSendMessage.new_from_json_dict(payload)
         print("ここ見てね")
         print(que_bus)
-        # line_bot_api.reply_message(
-        # event.reply_token,FlexSendMessage(alt_text="hoge",contents=que_bus))
+        line_bot_api.reply_message(
+        event.reply_token,FlexSendMessage(alt_text="hoge",contents=que_bus))
                 
         line_bot_api.reply_message(
             event.reply_token,
