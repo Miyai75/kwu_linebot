@@ -12,7 +12,7 @@ def princess_bus1(y):
     # リスト化する
     princess_bus = df[["限","出発","到着"]].values
 
-    y = int(input("大学には何限目に着きたいですか？"))
+    y = int(input("大学には何限目に着きたいですか？1～5を入力してください"))
     print(y, "限に着くには...")
     print()
 

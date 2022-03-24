@@ -12,7 +12,7 @@ from linebot.models import (
 )
 import os
 import json
-import bus
+from basu import main as bs
 import pandas as pd
 from tenki import tenkii as tnk
 
@@ -49,6 +49,11 @@ def callback():
 def handle_message(event):
     print("Hello World")
     print(event.message.text)
+    a = list
+    df = pd.read_csv("center2.csv")
+    for index, data in df.iterrows():
+        print(data)
+        
     if event.message.text == "京都女子大学の天気":
         # line_bot_api.reply_message(
         # event.reply_token,
@@ -59,53 +64,68 @@ def handle_message(event):
         event.reply_token,
         [TextSendMessage(text="天気だね"),TextSendMessage(text=weather)])
 
+
     if event.message.text == "大学生活に関する窓口":
         line_bot_api.reply_message(
         event.reply_token,
         [TextSendMessage(text="進路 履修 インターンシップ 奨学金 各種証明書に関する対応窓口に関する情報を教えます！"),TextSendMessage(text="何について知りたいですか？")])
 
-        df = pd.read_csv("center2.csv")#csvファイルを読み込み
-        #print(list(df.loc[1]))
+        # df = pd.read_csv("center2.csv")#csvファイルを読み込み
+        # #print(list(df.loc[1]))
 
-        a = list#初期値
+        # a = list#初期値
 
-        for index, data in df.iterrows():  # データフレームで行ごとにデータを取得
+        # for index, data in df.iterrows():  # データフレームで行ごとにデータを取得
             #print(index)
             #print(data)
             #print('--------')
-            if event.message.text == "進路":
-                a = list(df.loc[0])  # csvの1行目は項目なので2行目から数えるので2行目が[0]
-                break  # breakしないと6個同じものが出力される
-            elif event.message.text == "履修":
-                a = list(df.loc[1])
-                break
-            elif event.message.text == "インターンシップ":
-                a = list(df.loc[2])
-                break
-            elif event.message.text == "学費":
-                a = list(df.loc[3])
-                break
-            elif event.message.text == "奨学金":
-                a = list(df.loc[4])
-                break
-            elif event.message.text == "各種証明書":
-                a = list(df.loc[5])
-                break
-            else:
-                a = "いつでもどうぞ"
-                break
+            
+        if event.message.text == "進路":
+            a = list(df.loc[0])
+            line_bot_api.reply_message(
+            event.reply_token,
+            [TextSendMessage(text=a)])
+                
+        if event.message.text == "履修":
+            a = list(df.loc[1])
+            line_bot_api.reply_message(
+            event.reply_token,
+            [TextSendMessage(text=a)])
+            
+        if event.message.text == "インターンシップ":
+            a = list(df.loc[2])
+            line_bot_api.reply_message(
+            event.reply_token,
+            [TextSendMessage(text=a)])
         
-        line_bot_api.reply_message(
-        event.reply_token,
-        [TextSendMessage(text=a)])
+        if event.message.text == "学費":
+            a = list(df.loc[3])
+            line_bot_api.reply_message(
+            event.reply_token,
+            [TextSendMessage(text=a)])
+        
+        if event.message.text == "奨学金":
+            a = list(df.loc[4])
+            line_bot_api.reply_message(
+            event.reply_token,
+            [TextSendMessage(text=a)])
+        
+        if event.message.text == "各種証明書":
+            a = list(df.loc[5])
+            line_bot_api.reply_message(
+            event.reply_token,
+            [TextSendMessage(text=a)])
 
-    if event.message.text == "バスの時刻":
-        print("フラグ")
-        line_bot_api.reply_message(
-        event.reply_token,
-        [TextSendMessage(text="登校しますか？下校しますか？"),TextSendMessage(text="「市バスで登校」\n「市バスで下校」\n「プリンセスバスで登校」\n「プリンセスバスで下校」\nのどれかを入力してください")])
+    # if event.message.text == "バスの時刻":
+    #     print("フラグ")
+    #     line_bot_api.reply_message(
+    #     event.reply_token,
+    #     [TextSendMessage(text="登校しますか？下校しますか？"),TextSendMessage(text="「〇限に市バスで登校」\n「市バスで下校」\n「〇限にプリンセスバスで登校」\n「プリンセスバスで下校」\nのどれかを入力してください")])
 
-    # if event.message.text == "市バスで投稿":
+    # if event.message.text == "1限に市バスで登校":
+    #     print("toukou")
+    #     bustime = bs.BusTime(1,1,1)
+    #     bustime.bus()
 
 
     # if self.bus_scene == 1:

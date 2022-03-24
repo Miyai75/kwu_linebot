@@ -1,9 +1,10 @@
 # main.py
 # インスタンスメソッド化（初期化）
 class BusTime:
-  def __init__(self, x, y):
+  def __init__(self, x, y, z):
     self.x = x
     self.y = y
+    self.z = z
   def bus(self):
     # 登校するか下校するかの確認
     print("登校しますか？下校しますか？")
@@ -15,7 +16,7 @@ class BusTime:
     # 市バスで登校
     if self.x == 1 and self.y == 1:
       import sity_bus1
-      sb1 = sity_bus1.sity_bus1(0)
+      sb1 = sity_bus1.sity_bus1(self.z)
       return sb1
     # 市バスで下校
     elif self.x == 2 and self.y == 1:
@@ -25,7 +26,7 @@ class BusTime:
     # プリンセスバスで登校
     elif self.x == 1 and self.y == 2:
       import princess_bus1
-      pb1 = princess_bus1.princess_bus1(0)
+      pb1 = princess_bus1.princess_bus1(self.z)
       return pb1
     # プリンセスバスで下校
     elif self.x == 2 and self.y == 2:
@@ -37,5 +38,5 @@ class BusTime:
       return "----------ERROR----------"
 
       
-bustime = BusTime(0,0)
+bustime = BusTime(0,0,5)
 bustime.bus()
