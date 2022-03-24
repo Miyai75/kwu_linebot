@@ -17,7 +17,7 @@ class BusTime:
     if self.x == 1 and self.y == 1:
       import sity_bus1
       sb1 = sity_bus1.sity_bus1(self.z)
-      return sb1
+      print(sb1)
     # 市バスで下校
     elif self.x == 2 and self.y == 1:
       import sity_bus2
@@ -40,4 +40,4 @@ class BusTime:
       
 bustime = BusTime(0,0,5)
 bustime.bus()
-print()
+print(bustime.bus())

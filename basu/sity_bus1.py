@@ -16,16 +16,17 @@ def sity_bus1(y):
     #y = int(input("大学には何限目に着きたいですか？1～5を入力してください"))
     print(y, "限に着くには...")
     print()
-
+    listsb1 = []
     for sb1 in sity_bus:
         if sb1[0] == y:
             print(sb1[1], "系統")
             print(sb1[2], "京都駅発～")
             print(sb1[3], "東山七条着")
-            print()
-    
-    print("test")
-    print(sb1)
+            print(sb1)
+            listsb1.append(sb1)
+
     print("がオススメです。")
 
-    return sb1
+    return listsb1
+
+sity_bus1(1)
