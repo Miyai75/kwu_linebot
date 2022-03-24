@@ -27,3 +27,5 @@ def sity_bus1(y):
     print("test")
     print(sb1)
     print("がオススメです。")
+
+    return sb1

@@ -53,7 +53,7 @@ def handle_message(event):
     df = pd.read_csv("center2.csv")
     for index, data in df.iterrows():
         print(data)
-        
+
     if event.message.text == "京都女子大学の天気":
         # line_bot_api.reply_message(
         # event.reply_token,
