@@ -2,3 +2,4 @@ Flask
 line-bot-sdk
 beautifulsoup4
 requests
+FlexSendMessage
