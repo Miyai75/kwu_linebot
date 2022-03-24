@@ -99,17 +99,21 @@ def handle_message(event):
     #     [TextSendMessage(text=a)])
 
     if event.message.text == "バスの時刻":
-        bus_scene = 1
+        print("フラグ")
         print(bus_scene) 
         line_bot_api.reply_message(
         event.reply_token,
         [TextSendMessage(text="登校しますか？下校しますか？"),TextSendMessage(text="1.市バス 2.プリンセスバス")])
-
+        bus_scene = 1
+        
     if bus_scene == 1:
         bus_choices = {1:"市バス", 2:"プリンセスバス"} 
         if event.message.text in bus_choices:
-            kuji = bus_choices[event.message.text]
-            print(kuji)   
+            answer1 = bus_choices[event.message.text]
+            print(answer1)
+            line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=answer1))
         
     line_bot_api.reply_message(
     event.reply_token,
