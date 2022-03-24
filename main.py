@@ -58,16 +58,16 @@ def handle_message(event):
         event.reply_token,
         [TextSendMessage(text="天気だね"),TextSendMessage(text=weather)])
 
-    if event.message.text == "大学生活に関する窓口":
-        line_bot_api.reply_message(
-        event.reply_token,
-        def center():
-            df = pd.read_csv("center2.csv")#csvファイルを読み込み
-            #print(list(df.loc[1]))
+    # if event.message.text == "大学生活に関する窓口":
+    #     line_bot_api.reply_message(
+    #     event.reply_token,
+    #     def center():
+    #         df = pd.read_csv("center2.csv")#csvファイルを読み込み
+    #         #print(list(df.loc[1]))
 
-            [TextSendMessage(text="進路 履修 インターンシップ 奨学金 各種証明書に関する対応窓口に関する情報を教えます！"),TextSendMessage(text=input("何について知りたいですか？")),
-            TextSendMessage(text="知りたいことは",word, "ですね")])
-        center()
+    #         [TextSendMessage(text="進路 履修 インターンシップ 奨学金 各種証明書に関する対応窓口に関する情報を教えます！"),TextSendMessage(text=input("何について知りたいですか？")),
+    #         TextSendMessage(text="知りたいことは",word, "ですね")])
+    #     center()
 
     if event.message.text == "バスの時刻":
         bus_scene = 1
@@ -84,7 +84,7 @@ def handle_message(event):
 
 def BusMessage():
     print("動いているよ")
-    
+
 if __name__ == "__main__":
 #    app.run()
     port = int(os.getenv("PORT", 5000))
