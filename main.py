@@ -100,7 +100,7 @@ def handle_message(event):
     print(messages)
     line_bot_api.reply_message(
     event.reply_token,
-    messages)
+    messages = messages)
 
 
 if __name__ == "__main__":
