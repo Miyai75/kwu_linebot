@@ -204,3 +204,9 @@ container_obj = FlexSendMessage.new_from_json_dict(payload)
 
 def handle_message(event):
     line_bot_api.push_message(event.reply_token, messages=container_obj)
+
+
+if __name__ == "__main__":
+#    app.run()
+    port = int(os.getenv("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
