@@ -43,10 +43,11 @@ def callback():
 
     return 'OK'
 
-
+#@関数名デコレータ（元ある関数を変更せずに要素を追加出来るやつ）になる
 @handler.add(MessageEvent, message=TextMessage)
 
 def handle_message(event):
+    print(event)
     line_bot_api.reply_message(
     event.reply_token,
     TextSendMessage(text="hello"))
