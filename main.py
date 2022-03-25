@@ -8,7 +8,7 @@ from linebot.exceptions import (
     LineBotApiError, InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage
+    MessageEvent, TextMessage, TextSendMessage, FlexSendMessage
 )
 import os
 import json
@@ -44,105 +44,163 @@ def callback():
     return 'OK'
 
 
-@handler.add(MessageEvent, message=TextMessage)
+payload = {
+  "type": "flex",
+  "altText": "Flex Message",
+  "contents": {
+    "type": "bubble",
+    "hero": {
+      "type": "image",
+      "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
+      "size": "full",
+      "aspectRatio": "20:13",
+      "aspectMode": "cover",
+      "action": {
+        "type": "uri",
+        "label": "Line",
+        "uri": "https://linecorp.com/"
+      }
+    },
+    "body": {
+      "type": "box",
+      "layout": "vertical",
+      "contents": [
+        {
+          "type": "text",
+          "text": "Brown Cafe",
+          "size": "xl",
+          "weight": "bold"
+        },
+        {
+          "type": "box",
+          "layout": "baseline",
+          "margin": "md",
+          "contents": [
+            {
+              "type": "icon",
+              "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+              "size": "sm"
+            },
+            {
+              "type": "icon",
+              "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+              "size": "sm"
+            },
+            {
+              "type": "icon",
+              "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+              "size": "sm"
+            },
+            {
+              "type": "icon",
+              "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+              "size": "sm"
+            },
+            {
+              "type": "icon",
+              "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png",
+              "size": "sm"
+            },
+            {
+              "type": "text",
+              "text": "4.0",
+              "flex": 0,
+              "margin": "md",
+              "size": "sm",
+              "color": "#999999"
+            }
+          ]
+        },
+        {
+          "type": "box",
+          "layout": "vertical",
+          "spacing": "sm",
+          "margin": "lg",
+          "contents": [
+            {
+              "type": "box",
+              "layout": "baseline",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "Place",
+                  "flex": 1,
+                  "size": "sm",
+                  "color": "#AAAAAA"
+                },
+                {
+                  "type": "text",
+                  "text": "Miraina Tower, 4-1-6 Shinjuku, Tokyo",
+                  "flex": 5,
+                  "size": "sm",
+                  "color": "#666666",
+                  "wrap": True
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "layout": "baseline",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "Time",
+                  "flex": 1,
+                  "size": "sm",
+                  "color": "#AAAAAA"
+                },
+                {
+                  "type": "text",
+                  "text": "10:00 - 23:00",
+                  "flex": 5,
+                  "size": "sm",
+                  "color": "#666666",
+                  "wrap": True
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "footer": {
+      "type": "box",
+      "layout": "vertical",
+      "flex": 0,
+      "spacing": "sm",
+      "contents": [
+        {
+          "type": "button",
+          "action": {
+            "type": "uri",
+            "label": "CALL",
+            "uri": "https://linecorp.com"
+          },
+          "height": "sm",
+          "style": "link"
+        },
+        {
+          "type": "button",
+          "action": {
+            "type": "uri",
+            "label": "WEBSITE",
+            "uri": "https://linecorp.com"
+          },
+          "height": "sm",
+          "style": "link"
+        },
+        {
+          "type": "spacer",
+          "size": "sm"
+        }
+      ]
+    }
+  }
+}
+
+container_obj = FlexSendMessage.new_from_json_dict(payload)
 
 def handle_message(event):
-    print("Hello World")
-    print(event.message.text)
-    a = list
-    df = pd.read_csv("center2.csv")
-    for index, data in df.iterrows():
-        print(data)
-
-    if event.message.text == "京都女子大学の天気":
-        # line_bot_api.reply_message(
-        # event.reply_token,
-        # TextSendMessage(text="天気だね"))
-        weather = tnk.Weather(6110)
-        print(weather)
-        line_bot_api.reply_message(
-        event.reply_token,
-        [TextSendMessage(text="天気だね"),TextSendMessage(text=weather)])
-
-
-    if event.message.text == "大学生活に関する窓口":
-        line_bot_api.reply_message(
-        event.reply_token,
-        [TextSendMessage(text="進路 履修 インターンシップ 奨学金 各種証明書に関する対応窓口に関する情報を教えます！"),TextSendMessage(text="何について知りたいですか？")])
-
-        # df = pd.read_csv("center2.csv")#csvファイルを読み込み
-        # #print(list(df.loc[1]))
-
-        # a = list#初期値
-
-        # for index, data in df.iterrows():  # データフレームで行ごとにデータを取得
-            #print(index)
-            #print(data)
-            #print('--------')
-            
-        # if event.message.text == "進路":
-        #     a = list(df.loc[0])
-        #     line_bot_api.reply_message(
-        #     event.reply_token,
-        #     [TextSendMessage(text=a)])
-                
-        # if event.message.text == "履修":
-        #     a = list(df.loc[1])
-        #     line_bot_api.reply_message(
-        #     event.reply_token,
-        #     [TextSendMessage(text=a)])
-            
-        # if event.message.text == "インターンシップ":
-        #     a = list(df.loc[2])
-        #     line_bot_api.reply_message(
-        #     event.reply_token,
-        #     [TextSendMessage(text=a)])
-        
-        # if event.message.text == "学費":
-        #     a = list(df.loc[3])
-        #     line_bot_api.reply_message(
-        #     event.reply_token,
-        #     [TextSendMessage(text=a)])
-        
-        # if event.message.text == "奨学金":
-        #     a = list(df.loc[4])
-        #     line_bot_api.reply_message(
-        #     event.reply_token,
-        #     [TextSendMessage(text=a)])
-        
-        # if event.message.text == "各種証明書":
-        #     a = list(df.loc[5])
-        #     line_bot_api.reply_message(
-        #     event.reply_token,
-        #     [TextSendMessage(text=a)])
-
-    if event.message.text == "バスの時刻":
-        print("フラグ")
-        line_bot_api.reply_message(
-        event.reply_token,
-        [TextSendMessage(text="登校しますか？下校しますか？"),TextSendMessage(text="「〇限に市バスで登校」\n「市バスで下校」\n「〇限にプリンセスバスで登校」\n「プリンセスバスで下校」\nのどれかを入力してください")])
-
-    # if event.message.text == "1限に市バスで登校":
-    #     print("toukou")
-    #     bustime = bs.BusTime(1,1,1)
-    #     bustime.bus()
-
-
-    # if self.bus_scene == 1:
-    #     bus_choices = {1:"市バス", 2:"プリンセスバス"} 
-    #     if event.message.text in bus_choices:
-    #         answer1 = bus_choices[event.message.text]
-    #         print(answer1)
-    #         line_bot_api.reply_message(
-    #         event.reply_token,
-    #         TextSendMessage(text=answer1))
-        
-    line_bot_api.reply_message(
-    event.reply_token,
-    TextSendMessage(text="hello"))
-
-
-if __name__ == "__main__":
-#    app.run()
-    port = int(os.getenv("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
+    line_bot_api.push_message(event.reply_token, messages=container_obj)
