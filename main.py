@@ -29,15 +29,45 @@ flex_message = FlexSendMessage(
     alt_text='hello',
     contents={
         'type': 'bubble',
+        "header": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+                {
+                    "type": "text",
+                    "text": "Header text"
+                }
+            ]
+        },
         'direction': 'ltr',
         'hero': {
             'type': 'image',
-            'url': 'https://example.com/cafe.jpg',
-            'size': 'full',
-            'aspectRatio': '20:13',
-            'aspectMode': 'cover',
-            'action': { 'type': 'uri', 'uri': 'http://example.com', 'label': 'label' }
+            'url': 'https://example.com/flex/images/image.jpg',
+        },
+        "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+                {
+                    "type": "text",
+                    "text": "Body text"
+                }
+            ]
+        },
+        "footer": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+                {
+                    "type": "text",
+                    "text": "Footer text"
+                }
+            ]
+        },
+        "styles": {
+            "comment": "See the example of a bubble style object"
         }
+
     }
 )
 print(flex_message)
