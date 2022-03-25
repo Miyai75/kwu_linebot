@@ -71,7 +71,7 @@ flex_message = FlexSendMessage(
     }
 )
 
-f = open('basu.json', 'r')
+f = open('bus.json', 'r')
 messages = json.load(f)
 messages = FlexSendMessage(alt_text="hoge", contents=messages)
 print(flex_message)
