@@ -180,9 +180,10 @@ payload = {
     }
   }
 }
+container_obj = FlexSendMessage.new_from_json_dict(payload)
 flex_message = FlexSendMessage(
     alt_text='hello',
-    contents=payload
+    contents=container_obj
 )
 
 @app.route("/callback", methods=['POST'])
