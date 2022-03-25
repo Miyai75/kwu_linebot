@@ -200,10 +200,16 @@ payload = {
   }
 }
 
-print("動いているよ")
-container_obj = FlexSendMessage.new_from_json_dict(payload)
-line_bot_api.reply_message('Ua9b7cf6af4214efa8325404b940321c5', messages=container_obj)
+def lambda_handler(event, context):
+    
+    # user_id = 'Ua9b7cf6af4214efa8325404b940321c5'
+    print("動いてます")
+    line_bot_api.push_message(event.reply_token, TextSendMessage(text='Hello World!'))
 
+    return {
+        'statusCode': 200,
+        'body': json.dumps('ok', ensure_ascii=False)
+    }
 
 if __name__ == "__main__":
 #    app.run()
