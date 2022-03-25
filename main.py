@@ -95,7 +95,7 @@ def callback():
 def handle_message(event):
     print(event)
     f = open('bus.json', 'r')
-    flex_message_json_dict = json.loads(f)
+    flex_message_json_dict = json.load(f)
     line_bot_api.reply_message(
         event.reply_token,
         FlexSendMessage(
