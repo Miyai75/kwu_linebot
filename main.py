@@ -70,6 +70,10 @@ flex_message = FlexSendMessage(
 
     }
 )
+
+f = open('basu.json', 'r')
+messages = json.load(f)
+messages = FlexSendMessage(alt_text="hoge", contents=messages)
 print(flex_message)
 
 @app.route("/callback", methods=['POST'])
@@ -95,7 +99,7 @@ def handle_message(event):
     print(event)
     line_bot_api.reply_message(
     event.reply_token,
-    flex_message)
+    messages)
 
 
 if __name__ == "__main__":
