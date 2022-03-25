@@ -203,6 +203,7 @@ payload = {
 container_obj = FlexSendMessage.new_from_json_dict(payload)
 
 def handle_message(event):
+    print("動いています！！安心して！")
     line_bot_api.reply_message(event.reply_token, messages=container_obj)
 
 
