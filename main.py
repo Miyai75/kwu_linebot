@@ -95,14 +95,16 @@ def callback():
 def handle_message(event):
     print(event)
     f = open('bus.json', 'r')
-    json_msg = json.load(f)
-    msg1 = FlexSendMessage(alt_text="hoge", contents=json_msg)
-    print(msg1)
-    messages.append(msg1)
+    flex_message_json_dict = json.loads(f)
     line_bot_api.reply_message(
-    event.reply_token,
-    messages = messages
+        event.reply_token,
+        FlexSendMessage(
+            alt_text='alt_text',
+            # contentsパラメタに, dict型の値を渡す
+            contents=flex_message_json_dict
+        )
     )
+    print("完了")
 
 
 if __name__ == "__main__":
