@@ -181,7 +181,7 @@ payload = {
   }
 }
 
-flex_message = FlexSendMessage(payload)
+container_obj = FlexSendMessage.new_from_json_dict(payload)
 
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -206,8 +206,8 @@ def handle_message(event):
     print(event)
     line_bot_api.reply_message(
     event.reply_token,
-    flex_message)
-    print(flex_message)
+    container_obj)
+    print(container_obj)
 
 if __name__ == "__main__":
 #    app.run()
