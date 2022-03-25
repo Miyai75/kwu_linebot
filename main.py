@@ -74,7 +74,7 @@ flex_message = FlexSendMessage(
 f = open('bus.json', 'r')
 messages = json.load(f)
 print(messages)
-messages = FlexSendMessage(alt_text="hoge", contents=messages)
+
 
 
 @app.route("/callback", methods=['POST'])
@@ -99,6 +99,7 @@ def callback():
 def handle_message(event):
     print(event)
     print(messages)
+    messages = FlexSendMessage(alt_text="hoge", contents=messages)
     line_bot_api.reply_message(
     event.reply_token,
     messages = messages)
