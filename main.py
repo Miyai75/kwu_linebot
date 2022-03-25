@@ -73,8 +73,9 @@ flex_message = FlexSendMessage(
 
 f = open('bus.json', 'r')
 messages = json.load(f)
-messages = FlexSendMessage(alt_text="hoge", contents=messages)
 print(messages)
+messages = FlexSendMessage(alt_text="hoge", contents=messages)
+
 
 @app.route("/callback", methods=['POST'])
 def callback():
