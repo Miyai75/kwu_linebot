@@ -24,6 +24,21 @@ YOUR_CHANNEL_SECRET = os.environ["YOUR_CHANNEL_SECRET"]
 
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
+
+flex_message = FlexSendMessage(
+    alt_text='hello',
+    contents=BubbleContainer(
+        direction='ltr',
+        hero=ImageComponent(
+            url='https://example.com/cafe.jpg',
+            size='full',
+            aspect_ratio='20:13',
+            aspect_mode='cover',
+            action=URIAction(uri='http://example.com', label='label')
+        )
+    )
+)
+
 @app.route("/callback", methods=['POST'])
 
 
@@ -45,13 +60,12 @@ def callback():
 
 #@関数名デコレータ（元ある関数を変更せずに要素を追加出来るやつ）になる
 @handler.add(MessageEvent, message=TextMessage)
-
 def handle_message(event):
     print(event)
     line_bot_api.reply_message(
     event.reply_token,
-    TextSendMessage(text="hello"))
-    print(TextMessage(text="hello"))
+    flex_message)
+    print(flex_message)
 
 if __name__ == "__main__":
 #    app.run()
