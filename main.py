@@ -27,21 +27,21 @@ handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
 flex_message = FlexSendMessage(
     alt_text='hello',
-    contents=BubbleContainer(
-        direction='ltr',
-        hero=ImageComponent(
-            url='https://example.com/cafe.jpg',
-            size='full',
-            aspect_ratio='20:13',
-            aspect_mode='cover',
-            action=URIAction(uri='http://example.com', label='label')
-        )
-    )
+    contents={
+        'type': 'bubble',
+        'direction': 'ltr',
+        'hero': {
+            'type': 'image',
+            'url': 'https://example.com/cafe.jpg',
+            'size': 'full',
+            'aspectRatio': '20:13',
+            'aspectMode': 'cover',
+            'action': { 'type': 'uri', 'uri': 'http://example.com', 'label': 'label' }
+        }
+    }
 )
 
 @app.route("/callback", methods=['POST'])
-
-
 def callback():
     # get X-Line-Signature header value
     signature = request.headers['X-Line-Signature']
@@ -58,7 +58,7 @@ def callback():
 
     return 'OK'
 
-#@関数名デコレータ（元ある関数を変更せずに要素を追加出来るやつ）になる
+# @関数名デコレータ（元ある関数を変更せずに要素を追加出来るやつ）になる
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     print(event)
