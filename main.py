@@ -96,13 +96,13 @@ def handle_message(event):
     print(event)
     f = open('bus.json', 'r')
     flex_message_json_dict = json.load(f)
-    print(flex_message_json_dict["contents"])
+    print(flex_message_json_dict)
     line_bot_api.reply_message(
         event.reply_token,
         FlexSendMessage(
             alt_text='alt_text',
             # contentsパラメタに, dict型の値を渡す
-            contents=flex_message_json_dict["contents"]
+            contents=flex_message_json_dict
         )
     )
     print("完了")
