@@ -25,51 +25,51 @@ YOUR_CHANNEL_SECRET = os.environ["YOUR_CHANNEL_SECRET"]
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
-flex_message = FlexSendMessage(
-    alt_text='hello',
-    contents={
-        'type': 'bubble',
-        "header": {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-                {
-                    "type": "text",
-                    "text": "Header text"
-                }
-            ]
-        },
-        'direction': 'ltr',
-        'hero': {
-            'type': 'image',
-            'url': 'https://example.com/flex/images/image.jpg',
-        },
-        "body": {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-                {
-                    "type": "text",
-                    "text": "Body text"
-                }
-            ]
-        },
-        "footer": {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-                {
-                    "type": "text",
-                    "text": "Footer text"
-                }
-            ]
-        },
-        "styles": {
-            "comment": "See the example of a bubble style object"
-        }
+# flex_message = FlexSendMessage(
+#     alt_text='hello',
+#     contents={
+#         'type': 'bubble',
+#         "header": {
+#             "type": "box",
+#             "layout": "vertical",
+#             "contents": [
+#                 {
+#                     "type": "text",
+#                     "text": "Header text"
+#                 }
+#             ]
+#         },
+#         'direction': 'ltr',
+#         'hero': {
+#             'type': 'image',
+#             'url': 'https://example.com/flex/images/image.jpg',
+#         },
+#         "body": {
+#             "type": "box",
+#             "layout": "vertical",
+#             "contents": [
+#                 {
+#                     "type": "text",
+#                     "text": "Body text"
+#                 }
+#             ]
+#         },
+#         "footer": {
+#             "type": "box",
+#             "layout": "vertical",
+#             "contents": [
+#                 {
+#                     "type": "text",
+#                     "text": "Footer text"
+#                 }
+#             ]
+#         },
+#         "styles": {
+#             "comment": "See the example of a bubble style object"
+#         }
 
-    }
-)
+#     }
+# )
 
 messages = []
 
@@ -102,7 +102,7 @@ def handle_message(event):
         FlexSendMessage(
             alt_text='alt_text',
             # contentsパラメタに, dict型の値を渡す
-            contents=flex_message_json_dict
+            contents=flex_message_json_dict["contents"]
         )
     )
     print("完了")
