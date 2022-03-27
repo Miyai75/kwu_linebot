@@ -55,7 +55,7 @@ def callback():
 # テキストメッセージを受け取った時に動く関数
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    # print(event)
+    print(event)
 
     line_bot_api.reply_message(
         event.reply_token,
@@ -68,6 +68,7 @@ def handle_message(event):
     print("完了")
 
     if event.postback.data == "princess_line_bus":
+        print(event.postback.data)
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(
@@ -75,8 +76,9 @@ def handle_message(event):
                 text = "プリンセスラインバスですね！"
             )
         )
-
+    
     if event.postback.data == "municipal_bus":
+        print(event.postback.data)
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(
