@@ -25,51 +25,12 @@ YOUR_CHANNEL_SECRET = os.environ["YOUR_CHANNEL_SECRET"]
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
-# flex_message = FlexSendMessage(
-#     alt_text='hello',
-    # contents={
-    #     'type': 'bubble',
-    #     "header": {
-    #         "type": "box",
-    #         "layout": "vertical",
-    #         "contents": [
-    #             {
-    #                 "type": "text",
-    #                 "text": "Header text"
-    #             }
-    #         ]
-    #     },
-    #     'direction': 'ltr',
-    #     'hero': {
-    #         'type': 'image',
-    #         'url': 'https://example.com/flex/images/image.jpg',
-    #     },
-    #     "body": {
-    #         "type": "box",
-    #         "layout": "vertical",
-    #         "contents": [
-    #             {
-    #                 "type": "text",
-    #                 "text": "Body text"
-    #             }
-    #         ]
-    #     },
-    #     "footer": {
-    #         "type": "box",
-    #         "layout": "vertical",
-    #         "contents": [
-    #             {
-    #                 "type": "text",
-    #                 "text": "Footer text"
-    #             }
-    #         ]
-    #     },
-    #     "styles": {
-    #         "comment": "See the example of a bubble style object"
-    #     }
+# FlexMessageの用意
+# ファイルを読み込んで変数に格納
+f = open('bus.json', 'r')
+flex_message_json_dict = json.load(f)
+print(flex_message_json_dict)
 
-    # }
-# )
 
 messages = []
 
@@ -91,12 +52,11 @@ def callback():
     return 'OK'
 
 # @関数名デコレータ（元ある関数を変更せずに要素を追加出来るやつ）になる
+# テキストメッセージを受け取った時に動く関数
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    print(event)
-    f = open('bus.json', 'r')
-    flex_message_json_dict = json.load(f)
-    print(flex_message_json_dict)
+    # print(event)
+
     line_bot_api.reply_message(
         event.reply_token,
         FlexSendMessage(
