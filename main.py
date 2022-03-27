@@ -56,15 +56,23 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     print(event)
+    if event.message.text == "京都女子大学の天気":
+        weather = tnk.Weather(6110)
+        print(weather)
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=weather))
 
-    line_bot_api.reply_message(
-        event.reply_token,
-        FlexSendMessage(
-            alt_text='利用バス選択',
-            # contentsパラメタに, dict型の値を渡す
-            contents=flex_message_json_dict
+    if event.message.text == "バスの時刻":
+        line_bot_api.reply_message(
+            event.reply_token,
+            FlexSendMessage(
+                alt_text='利用バス選択',
+                # contentsパラメタに, dict型の値を渡す
+                contents=flex_message_json_dict
+            )
         )
-    )
+        
     print("完了")
 
 # ボタン押したときに動く関数
