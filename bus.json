@@ -36,7 +36,9 @@
             "type": "postback",
             "label": "プリンセスラインバス",
             "data": "princess_line_bus"
-          }
+          },
+          "adjustMode": "shrink-to-fit",
+          "style": "primary"
         },
         {
           "type": "button",
@@ -44,7 +46,9 @@
             "type": "postback",
             "label": "市バス",
             "data": "municipal_bus"
-          }
+          },
+          "style": "primary",
+          "offsetTop": "md"
         }
       ]
     }

@@ -8,7 +8,7 @@ from linebot.exceptions import (
     LineBotApiError, InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage, FlexSendMessage
+    MessageEvent, TextMessage, TextSendMessage, FlexSendMessage, PostbackEvent
 )
 import os
 import json
@@ -67,6 +67,9 @@ def handle_message(event):
     )
     print("完了")
 
+# ボタン押したときに動く関数
+@handler.add(PostbackEvent)
+def on_postback(event):
     if event.postback.data == "princess_line_bus":
         print(event.postback.data)
         line_bot_api.reply_message(
