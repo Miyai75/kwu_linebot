@@ -60,13 +60,30 @@ def handle_message(event):
     line_bot_api.reply_message(
         event.reply_token,
         FlexSendMessage(
-            alt_text='alt_text',
+            alt_text='利用バス選択',
             # contentsパラメタに, dict型の値を渡す
             contents=flex_message_json_dict
         )
     )
     print("完了")
 
+    if event.postback.data == "princess_line_bus":
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(
+                alt_text='princess_line_bus',
+                text = "プリンセスラインバスですね！"
+            )
+        )
+
+    if event.postback.data == "municipal_bus":
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(
+                alt_text='municipal_bus',
+                text = "市バスですね！"
+            )
+        )
 
 if __name__ == "__main__":
 #    app.run()
