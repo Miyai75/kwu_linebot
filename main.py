@@ -108,7 +108,7 @@ def on_postback(event):
             FlexSendMessage(alt_text='バス利用目的', contents = openJsonFile('json/bus_purpose.json'))
         ]
         bus_select_data[1] = 2
-        bus_select_data_text[1] = "プリンセスラインバス"
+        # bus_select_data_text[1] = "プリンセスラインバス"
 
     if event.postback.data == "municipal_bus":
         print(event.postback.data)
@@ -117,7 +117,10 @@ def on_postback(event):
             FlexSendMessage(alt_text='バス利用目的', contents = openJsonFile('json/bus_purpose.json'))
         ]
         bus_select_data[1] = 1
-        bus_select_data_text[1] = "市バス"
+        # bus_select_data_text[1] = "市バス"
+    
+    print(bus_select_data)
+    line_bot_api.reply_message(event.reply_token,result_contents)
     
     # if event.postback.data == "first_period":
     #     result_contents = TextSendMessage(text = whatPeriod("first_period"))
@@ -134,8 +137,7 @@ def on_postback(event):
     # if event.postback.data == "fifth_period":
     #     result_contents = TextSendMessage(text = whatPeriod("fifth_period"))            
 
-    print(bus_select_data)
-    line_bot_api.reply_message(event.reply_token,result_contents)
+
     
 
 if __name__ == "__main__":
