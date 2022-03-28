@@ -27,9 +27,13 @@ handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
 # FlexMessageの用意
 # ファイルを読み込んで変数に格納
-f = open('bus.json', 'r')
-flex_message_json_dict = json.load(f)
-print(flex_message_json_dict)
+with open('bus_option.json') as f:
+    print("ロード中")
+    flex_message_json_dict = json.load(f)
+
+# f = open('bus_option.json', 'r')
+# flex_message_json_dict = json.load(f)
+# print(flex_message_json_dict)
 
 
 messages = []

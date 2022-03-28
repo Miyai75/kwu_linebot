@@ -6,10 +6,9 @@
       "contents": [
         {
           "type": "text",
-          "text": "バスの時刻検索",
-          "align": "center",
+          "text": "利用目的選択",
           "size": "xl",
-          "offsetTop": "none"
+          "align": "center"
         }
       ]
     },
@@ -19,10 +18,10 @@
       "contents": [
         {
           "type": "text",
-          "text": "利用するバスを選んでください。",
-          "align": "center",
+          "text": "登校か下校かを選択してください。",
           "wrap": true,
-          "margin": "md"
+          "align": "center",
+          "size": "md"
         }
       ]
     },
@@ -34,21 +33,20 @@
           "type": "button",
           "action": {
             "type": "postback",
-            "label": "プリンセスラインバス",
-            "data": "princess_line_bus"
+            "label": "登校",
+            "data": "attend_school"
           },
-          "adjustMode": "shrink-to-fit",
           "style": "primary"
         },
         {
           "type": "button",
           "action": {
             "type": "postback",
-            "label": "市バス",
-            "data": "municipal_bus"
+            "label": "下校",
+            "data": "go_back_home"
           },
           "style": "primary",
-          "offsetTop": "md"
+          "offsetTop": "sm"
         }
       ]
     }

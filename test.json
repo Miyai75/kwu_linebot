@@ -1,0 +1,39 @@
+{
+    "type": "carousel",
+    "contents": [
+      {
+        "type": "bubble",
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "button",
+              "action": {
+                "type": "message",
+                "label": "あいうえお",
+                "text": "あいうえお"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "bubble",
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "button",
+              "action": {
+                "type": "message",
+                "label": "かきくけこ",
+                "text": "かきくけこ"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }

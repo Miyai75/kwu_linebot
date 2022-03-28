@@ -1,0 +1,55 @@
+{
+    "type": "bubble",
+    "header": {
+      "type": "box",
+      "layout": "vertical",
+      "contents": [
+        {
+          "type": "text",
+          "text": "バスの時刻検索",
+          "align": "center",
+          "size": "xl",
+          "offsetTop": "none"
+        }
+      ]
+    },
+    "hero": {
+      "type": "box",
+      "layout": "vertical",
+      "contents": [
+        {
+          "type": "text",
+          "text": "利用するバスを選んでください。",
+          "align": "center",
+          "wrap": true,
+          "margin": "md"
+        }
+      ]
+    },
+    "body": {
+      "type": "box",
+      "layout": "vertical",
+      "contents": [
+        {
+          "type": "button",
+          "action": {
+            "type": "postback",
+            "label": "プリンセスラインバス",
+            "data": "princess_line_bus"
+          },
+          "adjustMode": "shrink-to-fit",
+          "style": "primary"
+        },
+        {
+          "type": "button",
+          "action": {
+            "type": "postback",
+            "label": "市バス",
+            "data": "municipal_bus"
+          },
+          "style": "primary",
+          "offsetTop": "sm"
+        }
+      ]
+    }
+  }
