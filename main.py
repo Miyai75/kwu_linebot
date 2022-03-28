@@ -87,7 +87,7 @@ def handle_message(event):
             FlexSendMessage(
                 alt_text='利用バス選択',
                 # contentsパラメタに, dict型の値を渡す
-                contents=openJsonFile('test.json')
+                contents=openJsonFile('json/test.json')
             )
         )
     print("完了")
