@@ -13,10 +13,13 @@ def sity_bus1(y):
     sity_bus = df[["限","系統","出発","到着"]].values
 
     # 文字を入力する
-    #y = int(input("大学には何限目に着きたいですか？1～5を入力してください"))
-    print(y, "限に着くには...")
+    # y = int(input("大学には何限目に着きたいですか？1～5を入力してください"))
+    # print(y, "限に着くには...")
     print()
+
+    # 結果格納用リスト
     listsb1 = []
+
     for sb1 in sity_bus:
         if sb1[0] == y:
             print(sb1[1], "系統")
@@ -29,4 +32,3 @@ def sity_bus1(y):
 
     return listsb1
 
-sity_bus1(1)

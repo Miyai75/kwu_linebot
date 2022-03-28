@@ -25,6 +25,8 @@ YOUR_CHANNEL_SECRET = os.environ["YOUR_CHANNEL_SECRET"]
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
+# バスのデータ格納
+bus_select_data = [0,0,0]
 # FlexMessageの用意
 # ファイルを読み込んだ変数を返す関数
 def openJsonFile(filename):
@@ -39,8 +41,6 @@ def openJsonFile(filename):
 # flex_message_json_dict = json.load(f)
 # print(flex_message_json_dict)
 
-
-messages = []
 
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -77,7 +77,7 @@ def handle_message(event):
             FlexSendMessage(
                 alt_text='利用バス選択',
                 # contentsパラメタに, dict型の値を渡す
-                contents=openJsonFile('bus_option.json')
+                contents=openJsonFile('json/bus_option.json')
             )
         )
         
@@ -104,7 +104,8 @@ def on_postback(event):
                 text = "プリンセスラインバスですね！"
             )
         )
-    
+        bus_select_data[1] = 2
+
     if event.postback.data == "municipal_bus":
         print(event.postback.data)
         line_bot_api.reply_message(
@@ -114,6 +115,9 @@ def on_postback(event):
                 text = "市バスですね！"
             )
         )
+        bus_select_data[1] = 1
+    
+    print(bus_select_data)
 
 if __name__ == "__main__":
 #    app.run()

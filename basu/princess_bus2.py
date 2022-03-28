@@ -12,6 +12,10 @@ def princess_bus2():
 
     # リスト化する
     princess_bus = df[["出発","到着"]].values
+    # print(princess_bus)
+
+    # 結果格納用リスト
+    listpb2 = []
 
     # 現在時刻の取得
     dt_now = dt.datetime.now()
@@ -32,5 +36,7 @@ def princess_bus2():
             print(pb2[0], "京都女子大学発～")
             print(pb2[1], "京都駅八条口着")
             print()
-            
+            listpb2.append(pb2)
     print("がオススメです。")
+
+    return listpb2
