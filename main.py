@@ -102,20 +102,20 @@ def on_postback(event):
         bus_select_data[1] = 1
         bus_select_data_text[1] = "市バス"
     
-    if event.postback.data == "first_period":
-        result_contents = TextSendMessage(text = whatPeriod("first_period"))
+    # if event.postback.data == "first_period":
+    #     result_contents = TextSendMessage(text = whatPeriod("first_period"))
     
-    if event.postback.data == "second_period":
-        result_contents = TextSendMessage(text = whatPeriod("second_period"))        
+    # if event.postback.data == "second_period":
+    #     result_contents = TextSendMessage(text = whatPeriod("second_period"))        
     
-    if event.postback.data == "third_period":
-        result_contents = TextSendMessage(text = whatPeriod("third_period"))        
+    # if event.postback.data == "third_period":
+    #     result_contents = TextSendMessage(text = whatPeriod("third_period"))        
 
-    if event.postback.data == "fourth_period":
-        result_contents = TextSendMessage(text = whatPeriod("fourth_period"))            
+    # if event.postback.data == "fourth_period":
+    #     result_contents = TextSendMessage(text = whatPeriod("fourth_period"))            
 
-    if event.postback.data == "fifth_period":
-        result_contents = TextSendMessage(text = whatPeriod("fifth_period"))            
+    # if event.postback.data == "fifth_period":
+    #     result_contents = TextSendMessage(text = whatPeriod("fifth_period"))            
 
 
     line_bot_api.reply_message(event.reply_token,result_contents)
