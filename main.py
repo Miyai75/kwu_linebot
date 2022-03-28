@@ -103,19 +103,20 @@ def on_postback(event):
         bus_select_data_text[1] = "市バス"
     
     if event.postback.data == "first_period":
-        whatPeriod("first_period")
+        result_contents = TextSendMessage(text = whatPeriod("first_period"))
     
     if event.postback.data == "second_period":
-        whatPeriod("second_period")
+        result_contents = TextSendMessage(text = whatPeriod("second_period"))        
     
     if event.postback.data == "third_period":
-        whatPeriod("third_period")
+        result_contents = TextSendMessage(text = whatPeriod("third_period"))        
 
-    if event.postback.data == "fourth_period":    
-        whatPeriod("fourth_period")
+    if event.postback.data == "fourth_period":
+        result_contents = TextSendMessage(text = whatPeriod("fourth_period"))            
 
-    if event.postback.data == "fifth_period":    
-        whatPeriod("fifth_period")
+    if event.postback.data == "fifth_period":
+        result_contents = TextSendMessage(text = whatPeriod("fifth_period"))            
+
 
     line_bot_api.reply_message(event.reply_token,result_contents)
     print(bus_select_data)
@@ -136,6 +137,7 @@ def whatPeriod(period):
     print(bus_select_data_text)
     result_text = f"{bus_select_data_text[1]}で{bus_select_data_text[2]}限に{bus_select_data_text[0]}ですね！"
     print(result_text)
+    return result_text
         
 
 if __name__ == "__main__":
