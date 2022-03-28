@@ -1,53 +1,128 @@
 {
-    "type": "bubble",
-    "header": {
-      "type": "box",
-      "layout": "vertical",
-      "contents": [
-        {
-          "type": "text",
-          "text": "利用目的選択",
-          "size": "xl",
-          "align": "center"
-        }
-      ]
-    },
-    "hero": {
-      "type": "box",
-      "layout": "vertical",
-      "contents": [
-        {
-          "type": "text",
-          "text": "登校か下校かを選択してください。",
-          "wrap": true,
-          "align": "center",
-          "size": "md"
-        }
-      ]
-    },
-    "body": {
-      "type": "box",
-      "layout": "vertical",
-      "contents": [
-        {
-          "type": "button",
-          "action": {
-            "type": "postback",
-            "label": "登校",
-            "data": "attend_school"
+  "type": "carousel",
+  "contents": [
+    {
+      "type": "bubble",
+      "header": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "登校",
+            "size": "xl",
+            "align": "center"
+          }
+        ]
+      },
+      "hero": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "何限に登校しますか？",
+            "align": "center",
+            "size": "md"
+          }
+        ]
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "1限",
+              "data": "first_period",
+              "displayText": "1限！！！"
+            },
+            "style": "primary"
           },
-          "style": "primary"
-        },
-        {
-          "type": "button",
-          "action": {
-            "type": "postback",
-            "label": "下校",
-            "data": "go_back_home"
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "2限",
+              "data": "second_period",
+              "displayText": "2限！！！"
+            },
+            "style": "primary",
+            "margin": "sm"
           },
-          "style": "primary",
-          "offsetTop": "sm"
-        }
-      ]
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "3限",
+              "data": "third_period",
+              "displayText": "3限！！！"
+            },
+            "style": "primary",
+            "margin": "sm"
+          },
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "4限",
+              "data": "fourth_period",
+              "displayText": "4限！！！"
+            },
+            "style": "primary",
+            "margin": "sm"
+          },
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "5限",
+              "data": "fifth_period",
+              "displayText": "5限！！！"
+            },
+            "style": "primary",
+            "margin": "sm"
+          }
+        ]
+      }
+    },
+    {
+      "type": "bubble",
+      "header": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "下校",
+            "size": "xl",
+            "align": "center"
+          }
+        ]
+      },
+      "hero": {
+        "type": "image",
+        "url": "https://www.linustock.com/images/uploads/2018/04/1524555768.png",
+        "size": "full"
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "下校する",
+              "data": "go_home",
+              "displayText": "家に帰りたい！！！"
+            },
+            "style": "primary"
+          }
+        ]
+      }
     }
-  }
+  ]
+}

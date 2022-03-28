@@ -117,6 +117,15 @@ def on_postback(event):
         )
         bus_select_data[1] = 1
     
+    if bus_select_data[1] != 0:
+        line_bot_api.reply_message(
+            event.reply_token,
+            FlexSendMessage(
+                alt_text = 'バス利用目的選択',
+                contents = openJsonFile('json/bus_purpose.json')
+            )
+        )
+    
     print(bus_select_data)
 
 if __name__ == "__main__":
