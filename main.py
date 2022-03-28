@@ -127,9 +127,7 @@ def whatPeriod(event, period):
         print(bus_select_data)
         print(bus_select_data_text)
         result_text = f"{bus_select_data_text[1]}で{bus_select_data_text[2]}限に{bus_select_data_text[0]}ですね！"
-        result_contents = TextSendMessage(text = result_text)
-        print(result_contents)
-
+        print(result_text)
         
 
 if __name__ == "__main__":
