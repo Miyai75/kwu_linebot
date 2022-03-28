@@ -26,7 +26,7 @@ line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
 # FlexMessageの用意
-# ファイルを読み込んで変数に格納
+# ファイルを読み込んだ変数を返す関数
 def openJsonFile(filename):
     with open(filename) as f:
         print("ロード中")
@@ -81,6 +81,15 @@ def handle_message(event):
             )
         )
         
+    if event.message.text == "テスト":
+        line_bot_api.reply_message(
+            event.reply_token,
+            FlexSendMessage(
+                alt_text='利用バス選択',
+                # contentsパラメタに, dict型の値を渡す
+                contents=openJsonFile('test.json')
+            )
+        )
     print("完了")
 
 # ボタン押したときに動く関数
