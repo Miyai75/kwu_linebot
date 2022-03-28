@@ -29,7 +29,7 @@ handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 bus_select_data = [0,0,0] # バスの結果を数値でデータ格納[登下校,バスの種類,何限]
 bus_select_data_text = ["","",""] # バスの結果をそのまま格納[登下校,バスの種類,何限]
 periods = {"first_period":1, "second_period":2, "third_period":3, "fourth_period":4, "fifth_period":5}
-
+result_contents = TextSendMessage(text="hello")
 
 # f = open('bus_option.json', 'r')
 # flex_message_json_dict = json.load(f)
