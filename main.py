@@ -1,5 +1,5 @@
 
-# from cgitb import text
+from cgitb import text
 from flask import Flask, request, abort
 
 from linebot import (
@@ -29,7 +29,7 @@ handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 bus_select_data = [0,0,0] # バスの結果を数値でデータ格納[登下校,バスの種類,何限]
 bus_select_data_text = ["","",""] # バスの結果をそのまま格納[登下校,バスの種類,何限]
 periods = {"first_period":1, "second_period":2, "third_period":3, "fourth_period":4, "fifth_period":5}
-
+result_contents = TextSendMessage(text="hello")
 
 # f = open('bus_option.json', 'r')
 # flex_message_json_dict = json.load(f)
@@ -43,14 +43,14 @@ def openJsonFile(filename):
         print(flex_message_json_dict)
         return flex_message_json_dict
 
-# def whatPeriod(period):
-#     bus_select_data[0], bus_select_data[2] = 1, periods[period]
-#     bus_select_data_text[0], bus_select_data_text[2] = "登校", periods[period]
-#     print(bus_select_data)
-#     print(bus_select_data_text)
-#     result_text = f"{bus_select_data_text[1]}で{bus_select_data_text[2]}限に{bus_select_data_text[0]}ですね！"
-#     print(result_text)
-#     return result_text
+def whatPeriod(period):
+    bus_select_data[0], bus_select_data[2] = 1, periods[period]
+    bus_select_data_text[0], bus_select_data_text[2] = "登校", periods[period]
+    print(bus_select_data)
+    print(bus_select_data_text)
+    result_text = f"{bus_select_data_text[1]}で{bus_select_data_text[2]}限に{bus_select_data_text[0]}ですね！"
+    print(result_text)
+    return result_text
 
 
 @app.route("/callback", methods=['POST'])
@@ -101,8 +101,6 @@ def handle_message(event):
 # ボタン押したときに動く関数
 @handler.add(PostbackEvent)
 def on_postback(event):
-    result_contents = TextSendMessage(text="hello")
-    
     if event.postback.data == "princess_line_bus":
         print(event.postback.data)
         result_contents = [
@@ -121,9 +119,30 @@ def on_postback(event):
         bus_select_data[1] = 1
         bus_select_data_text[1] = "市バス"
     
+    if event.postback.data == "first_period":
+        result_contents = TextSendMessage(text = whatPeriod("first_period"))
+    
+    if event.postback.data == "second_period":
+        result_contents = TextSendMessage(text = whatPeriod("second_period"))        
+    
+    if event.postback.data == "third_period":
+        result_contents = TextSendMessage(text = whatPeriod("third_period"))        
+
+    if event.postback.data == "fourth_period":
+        result_contents = TextSendMessage(text = whatPeriod("fourth_period"))            
+
+    if event.postback.data == "fifth_period":
+        result_contents = TextSendMessage(text = whatPeriod("fifth_period"))
+    
     print(bus_select_data)
+    print(bus_select_data_text)
     line_bot_api.reply_message(event.reply_token,result_contents)
     
+            
+
+
+    
+
 if __name__ == "__main__":
 #    app.run()
     port = int(os.getenv("PORT", 5000))
