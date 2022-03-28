@@ -102,11 +102,20 @@ def on_postback(event):
         bus_select_data[1] = 1
         bus_select_data_text[1] = "市バス"
     
-    whatPeriod(event, "first_period")
-    whatPeriod(event, "second_period")
-    whatPeriod(event, "third_period")
-    whatPeriod(event, "fourth_period")
-    whatPeriod(event, "fifth_period")
+    if event.postback.data == "first_period":
+        whatPeriod("first_period")
+    
+    if event.postback.data == "second_period":
+        whatPeriod("second_period")
+    
+    if event.postback.data == "third_period":
+        whatPeriod("third_period")
+
+    if event.postback.data == "fourth_period":    
+        whatPeriod("fourth_period")
+
+    if event.postback.data == "fifth_period":    
+        whatPeriod("fifth_period")
 
     line_bot_api.reply_message(event.reply_token,result_contents)
     print(bus_select_data)
@@ -120,14 +129,13 @@ def openJsonFile(filename):
         print(flex_message_json_dict)
         return flex_message_json_dict
 
-def whatPeriod(event, period):
-    if event.postback.data == period:
-        bus_select_data[0], bus_select_data[2] = 1, periods[period]
-        bus_select_data_text[0], bus_select_data_text[2] = "登校", periods[period]
-        print(bus_select_data)
-        print(bus_select_data_text)
-        result_text = f"{bus_select_data_text[1]}で{bus_select_data_text[2]}限に{bus_select_data_text[0]}ですね！"
-        print(result_text)
+def whatPeriod(period):
+    bus_select_data[0], bus_select_data[2] = 1, periods[period]
+    bus_select_data_text[0], bus_select_data_text[2] = "登校", periods[period]
+    print(bus_select_data)
+    print(bus_select_data_text)
+    result_text = f"{bus_select_data_text[1]}で{bus_select_data_text[2]}限に{bus_select_data_text[0]}ですね！"
+    print(result_text)
         
 
 if __name__ == "__main__":
