@@ -122,24 +122,6 @@ def on_postback(event):
     print(bus_select_data)
     line_bot_api.reply_message(event.reply_token,result_contents)
     
-    # if event.postback.data == "first_period":
-    #     result_contents = TextSendMessage(text = whatPeriod("first_period"))
-    
-    # if event.postback.data == "second_period":
-    #     result_contents = TextSendMessage(text = whatPeriod("second_period"))        
-    
-    # if event.postback.data == "third_period":
-    #     result_contents = TextSendMessage(text = whatPeriod("third_period"))        
-
-    # if event.postback.data == "fourth_period":
-    #     result_contents = TextSendMessage(text = whatPeriod("fourth_period"))            
-
-    # if event.postback.data == "fifth_period":
-    #     result_contents = TextSendMessage(text = whatPeriod("fifth_period"))            
-
-
-    
-
 if __name__ == "__main__":
 #    app.run()
     port = int(os.getenv("PORT", 5000))
