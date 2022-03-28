@@ -1,5 +1,5 @@
 
-from cgitb import text
+# from cgitb import text
 from flask import Flask, request, abort
 
 from linebot import (
@@ -43,14 +43,14 @@ def openJsonFile(filename):
         print(flex_message_json_dict)
         return flex_message_json_dict
 
-def whatPeriod(period):
-    bus_select_data[0], bus_select_data[2] = 1, periods[period]
-    bus_select_data_text[0], bus_select_data_text[2] = "登校", periods[period]
-    print(bus_select_data)
-    print(bus_select_data_text)
-    result_text = f"{bus_select_data_text[1]}で{bus_select_data_text[2]}限に{bus_select_data_text[0]}ですね！"
-    print(result_text)
-    return result_text
+# def whatPeriod(period):
+#     bus_select_data[0], bus_select_data[2] = 1, periods[period]
+#     bus_select_data_text[0], bus_select_data_text[2] = "登校", periods[period]
+#     print(bus_select_data)
+#     print(bus_select_data_text)
+#     result_text = f"{bus_select_data_text[1]}で{bus_select_data_text[2]}限に{bus_select_data_text[0]}ですね！"
+#     print(result_text)
+#     return result_text
 
 
 @app.route("/callback", methods=['POST'])
@@ -108,7 +108,7 @@ def on_postback(event):
             FlexSendMessage(alt_text='バス利用目的', contents = openJsonFile('json/bus_purpose.json'))
         ]
         bus_select_data[1] = 2
-        # bus_select_data_text[1] = "プリンセスラインバス"
+        bus_select_data_text[1] = "プリンセスラインバス"
 
     if event.postback.data == "municipal_bus":
         print(event.postback.data)
@@ -117,7 +117,7 @@ def on_postback(event):
             FlexSendMessage(alt_text='バス利用目的', contents = openJsonFile('json/bus_purpose.json'))
         ]
         bus_select_data[1] = 1
-        # bus_select_data_text[1] = "市バス"
+        bus_select_data_text[1] = "市バス"
     
     print(bus_select_data)
     line_bot_api.reply_message(event.reply_token,result_contents)
