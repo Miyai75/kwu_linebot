@@ -26,31 +26,11 @@ YOUR_CHANNEL_SECRET = os.environ["YOUR_CHANNEL_SECRET"]
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
-# バスのデータ格納
-bus_select_data = [0,0,0]
-# FlexMessageの用意
-# ファイルを読み込んだ変数を返す関数
-def openJsonFile(filename):
-    with open(filename) as f:
-        print("ロード中")
-        flex_message_json_dict = json.load(f)
-        print(flex_message_json_dict)
-        return flex_message_json_dict
+bus_select_data = [0,0,0] # バスの結果を数値でデータ格納[登下校,バスの種類,何限]
+bus_select_data_text = [] # バスの結果をそのまま格納[登下校,バスの種類,何限]
+periods = {"first_period":1, "second_period":2, "third_period":3, "fourth_period":4, "fifth_period":5}
 
 
-
-def sendMessage(event, type, contents):
-    if type == "text":
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text=contents))
-
-    if type == "flex":
-        line_bot_api.reply_message(
-            event.reply_token,
-            FlexSendMessage(contents=contents))
-
-    
 # f = open('bus_option.json', 'r')
 # flex_message_json_dict = json.load(f)
 # print(flex_message_json_dict)
@@ -106,37 +86,54 @@ def handle_message(event):
 def on_postback(event):
     if event.postback.data == "princess_line_bus":
         print(event.postback.data)
-        line_bot_api.reply_message(
-            event.reply_token,
-            [
-                TextSendMessage(alt_text='princess_line_bus',text = "プリンセスラインバスですね！"),
-                FlexSendMessage(alt_text='バス利用目的', contents = openJsonFile('json/bus_purpose.json'))
-            ]
-        )
+        result_contents = [
+            TextSendMessage(alt_text='princess_line_bus',text = "プリンセスラインバスですね！"),
+            FlexSendMessage(alt_text='バス利用目的', contents = openJsonFile('json/bus_purpose.json'))
+        ]
         bus_select_data[1] = 2
+        bus_select_data_text[1] = "プリンセスラインバス"
 
     if event.postback.data == "municipal_bus":
         print(event.postback.data)
-        line_bot_api.reply_message(
-            event.reply_token,
-            [
-                TextSendMessage(alt_text='municipal_bus',text = "市バスですね！"),
-                FlexSendMessage(alt_text='バス利用目的', contents = openJsonFile('json/bus_purpose.json'))
-            ]
-            
-        )
+        result_contents = [
+            TextSendMessage(alt_text='municipal_bus',text = "市バスですね！"),
+            FlexSendMessage(alt_text='バス利用目的', contents = openJsonFile('json/bus_purpose.json'))
+        ]
         bus_select_data[1] = 1
+        bus_select_data_text[1] = "市バス"
     
-    # if bus_select_data[1] != 0:
-    #     line_bot_api.reply_message(
-    #         event.reply_token,
-            # FlexSendMessage(
-            #     alt_text = 'バス利用目的選択',
-            #     contents = openJsonFile('json/bus_purpose.json')
-            # )
-    #     )
-    
+    whatPeriod(event, "first_period")
+    whatPeriod(event, "second_period")
+    whatPeriod(event, "third_period")
+    whatPeriod(event, "fourth_period")
+    whatPeriod(event, "fifth_period")
+
+    line_bot_api.reply_message(event.reply_token,result_contents)
     print(bus_select_data)
+
+# FlexMessageの用意
+# ファイルを読み込んだ変数を返す関数
+def openJsonFile(filename):
+    with open(filename) as f:
+        print("ロード中")
+        flex_message_json_dict = json.load(f)
+        print(flex_message_json_dict)
+        return flex_message_json_dict
+
+def whatPeriod(event, period):
+    if event.postback.data == period:
+        bus_select_data[0], bus_select_data[2] = 1, periods[period]
+        bus_select_data_text[0], bus_select_data_text[2] = "登校", periods[period]
+        print(bus_select_data)
+        print(bus_select_data_text)
+        result_text = f"{bus_select_data_text[1]}で{bus_select_data_text[2]}限に{bus_select_data_text[0]}ですね！"
+        result_contents =[
+            TextSendMessage(text = result_text)
+        ]
+    
+    return result_contents
+
+        
 
 if __name__ == "__main__":
 #    app.run()

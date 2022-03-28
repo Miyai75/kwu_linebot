@@ -37,7 +37,7 @@
               "type": "postback",
               "label": "1限",
               "data": "first_period",
-              "displayText": "1限！！！"
+              "displayText": "1限！"
             },
             "style": "primary"
           },
@@ -47,7 +47,7 @@
               "type": "postback",
               "label": "2限",
               "data": "second_period",
-              "displayText": "2限！！！"
+              "displayText": "2限！"
             },
             "style": "primary",
             "margin": "sm"
@@ -58,7 +58,7 @@
               "type": "postback",
               "label": "3限",
               "data": "third_period",
-              "displayText": "3限！！！"
+              "displayText": "3限！"
             },
             "style": "primary",
             "margin": "sm"
@@ -69,7 +69,7 @@
               "type": "postback",
               "label": "4限",
               "data": "fourth_period",
-              "displayText": "4限！！！"
+              "displayText": "4限！"
             },
             "style": "primary",
             "margin": "sm"
@@ -80,7 +80,7 @@
               "type": "postback",
               "label": "5限",
               "data": "fifth_period",
-              "displayText": "5限！！！"
+              "displayText": "5限！"
             },
             "style": "primary",
             "margin": "sm"
@@ -104,7 +104,7 @@
       },
       "hero": {
         "type": "image",
-        "url": "https://www.linustock.com/images/uploads/2018/04/1524555768.png",
+        "url": "images/startdash",
         "size": "full"
       },
       "body": {
@@ -117,7 +117,7 @@
               "type": "postback",
               "label": "下校する",
               "data": "go_home",
-              "displayText": "家に帰りたい！！！"
+              "displayText": "家に帰りたい！"
             },
             "style": "primary"
           }
