@@ -16,6 +16,7 @@ import json
 # from basu import main as bs
 import pandas as pd
 from tenki import tenkii as tnk
+from basu import main as bus
 
 app = Flask(__name__)
 
@@ -34,23 +35,6 @@ result_contents = TextSendMessage(text="hello")
 # f = open('bus_option.json', 'r')
 # flex_message_json_dict = json.load(f)
 # print(flex_message_json_dict)
-# FlexMessageの用意
-# ファイルを読み込んだ変数を返す関数
-def openJsonFile(filename):
-    with open(filename) as f:
-        print("ロード中")
-        flex_message_json_dict = json.load(f)
-        print(flex_message_json_dict)
-        return flex_message_json_dict
-
-def whatPeriod(period):
-    bus_select_data[0], bus_select_data[2] = 1, periods[period]
-    bus_select_data_text[0], bus_select_data_text[2] = "登校", periods[period]
-    print(bus_select_data)
-    print(bus_select_data_text)
-    result_text = f"{bus_select_data_text[1]}で{bus_select_data_text[2]}限に{bus_select_data_text[0]}ですね！"
-    print(result_text)
-    return result_text
 
 
 @app.route("/callback", methods=['POST'])
@@ -120,25 +104,51 @@ def on_postback(event):
         bus_select_data_text[1] = "市バス"
     
     if event.postback.data == "first_period":
-        result_contents = TextSendMessage(text = whatPeriod("first_period"))
+        bus_result = whatPeriod("first_period")
+        print(bus_result)
+        result_contents = TextSendMessage(text = bus_result[0])
     
     if event.postback.data == "second_period":
-        result_contents = TextSendMessage(text = whatPeriod("second_period"))        
+        bus_result = whatPeriod("second_period")
+        result_contents = TextSendMessage(text = bus_result[0])        
     
     if event.postback.data == "third_period":
-        result_contents = TextSendMessage(text = whatPeriod("third_period"))        
+        bus_result = whatPeriod("third_period")
+        result_contents = TextSendMessage(text = bus_result[0])        
 
     if event.postback.data == "fourth_period":
-        result_contents = TextSendMessage(text = whatPeriod("fourth_period"))            
+        bus_result = whatPeriod("fourth_period")
+        result_contents = TextSendMessage(text = bus_result[0])            
 
     if event.postback.data == "fifth_period":
-        result_contents = TextSendMessage(text = whatPeriod("fifth_period"))
+        bus_result = whatPeriod("fifth_period")
+        result_contents = TextSendMessage(text = bus_result[0])
     
     print(bus_select_data)
     print(bus_select_data_text)
     line_bot_api.reply_message(event.reply_token,result_contents)
     
-            
+# FlexMessageの用意
+# ファイルを読み込んだ変数を返す関数
+def openJsonFile(filename):
+    with open(filename) as f:
+        print("ロード中")
+        flex_message_json_dict = json.load(f)
+        print(flex_message_json_dict)
+        return flex_message_json_dict
+
+# ○○時限に登校するのを格納したバス用関数、テキストと時間を返す
+def whatPeriod(period):
+    bus_select_data[0], bus_select_data[2] = 1, periods[period]
+    bus_select_data_text[0], bus_select_data_text[2] = "登校", periods[period]
+    print(bus_select_data)
+    print(bus_select_data_text)
+    result_text = f"「{bus_select_data_text[1]}で{bus_select_data_text[2]}限に{bus_select_data_text[0]}」ですね！"
+    print(result_text)
+    bus_tmp = bus.BusTime(bus_select_data[0],bus_select_data[1],bus_select_data[2])
+    bus_result = bus_tmp.bus()
+    return result_text, bus_result
+
 
 
     
