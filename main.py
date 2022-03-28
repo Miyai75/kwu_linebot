@@ -1,4 +1,5 @@
 
+from cgitb import text
 from flask import Flask, request, abort
 
 from linebot import (
@@ -36,7 +37,18 @@ def openJsonFile(filename):
         print(flex_message_json_dict)
         return flex_message_json_dict
 
+def sendMessage(event, type, contents):
+    if type == "text":
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=contents))
 
+    if type == "flex":
+        line_bot_api.reply_message(
+            event.reply_token,
+            FlexSendMessage(contents=contents))
+
+    
 # f = open('bus_option.json', 'r')
 # flex_message_json_dict = json.load(f)
 # print(flex_message_json_dict)
@@ -67,9 +79,7 @@ def handle_message(event):
     if event.message.text == "京都女子大学の天気":
         weather = tnk.Weather(6110)
         print(weather)
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text=weather))
+        sendMessage(event, "text", weather)
 
     if event.message.text == "バスの時刻":
         line_bot_api.reply_message(
@@ -117,14 +127,14 @@ def on_postback(event):
         )
         bus_select_data[1] = 1
     
-    if bus_select_data[1] != 0:
-        line_bot_api.reply_message(
-            event.reply_token,
-            FlexSendMessage(
-                alt_text = 'バス利用目的選択',
-                contents = openJsonFile('json/bus_purpose.json')
-            )
-        )
+    # if bus_select_data[1] != 0:
+    #     line_bot_api.reply_message(
+    #         event.reply_token,
+            # FlexSendMessage(
+            #     alt_text = 'バス利用目的選択',
+            #     contents = openJsonFile('json/bus_purpose.json')
+            # )
+    #     )
     
     print(bus_select_data)
 
