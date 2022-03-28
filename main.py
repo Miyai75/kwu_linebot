@@ -134,9 +134,9 @@ def on_postback(event):
     # if event.postback.data == "fifth_period":
     #     result_contents = TextSendMessage(text = whatPeriod("fifth_period"))            
 
-
-    line_bot_api.reply_message(event.reply_token,result_contents)
     print(bus_select_data)
+    line_bot_api.reply_message(event.reply_token,result_contents)
+    
 
 if __name__ == "__main__":
 #    app.run()
