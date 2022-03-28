@@ -27,9 +27,13 @@ handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
 # FlexMessageの用意
 # ファイルを読み込んで変数に格納
-with open('bus_option.json') as f:
-    print("ロード中")
-    flex_message_json_dict = json.load(f)
+def openJsonFile(filename):
+    with open(filename) as f:
+        print("ロード中")
+        flex_message_json_dict = json.load(f)
+        print(flex_message_json_dict)
+        return flex_message_json_dict
+
 
 # f = open('bus_option.json', 'r')
 # flex_message_json_dict = json.load(f)
@@ -73,7 +77,7 @@ def handle_message(event):
             FlexSendMessage(
                 alt_text='利用バス選択',
                 # contentsパラメタに, dict型の値を渡す
-                contents=flex_message_json_dict
+                contents=openJsonFile('bus_option.json')
             )
         )
         
