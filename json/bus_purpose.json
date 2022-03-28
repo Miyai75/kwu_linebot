@@ -104,7 +104,7 @@
       },
       "hero": {
         "type": "image",
-        "url": "images/startdash",
+        "url": "images/startdash.png",
         "size": "full"
       },
       "body": {
