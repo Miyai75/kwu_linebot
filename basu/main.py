@@ -16,7 +16,7 @@ class BusTime:
     # print(self.z, "限に着くには...")
     # 市バスで登校
     if self.x == 1 and self.y == 1:
-      from basu import sity_bus1
+      import sity_bus1
       sb1 = sity_bus1.sity_bus1(self.z)
       print("sb1の中身")
       print(sb1)
@@ -24,17 +24,17 @@ class BusTime:
       return sb1
     # 市バスで下校
     elif self.x == 2 and self.y == 1:
-      from basu import sity_bus2
+      import sity_bus2
       sb2 = sity_bus2.sity_bus2()
       return sb2
     # プリンセスバスで登校
     elif self.x == 1 and self.y == 2:
-      from basu import princess_bus1
+      import princess_bus1
       pb1 = princess_bus1.princess_bus1(self.z)
       return pb1
     # プリンセスバスで下校
     elif self.x == 2 and self.y == 2:
-      from basu import princess_bus2
+      import princess_bus2
       pb2 = princess_bus2.princess_bus2()
       return pb2
     else:
