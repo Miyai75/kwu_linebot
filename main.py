@@ -130,8 +130,6 @@ def whatPeriod(event, period):
         result_contents =[
             TextSendMessage(text = result_text)
         ]
-    
-    return result_contents
 
         
 
