@@ -109,10 +109,10 @@ def on_postback(event):
         print(event.postback.data)
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(
-                alt_text='princess_line_bus',
-                text = "プリンセスラインバスですね！"
-            )
+            [
+                TextSendMessage(alt_text='princess_line_bus',text = "プリンセスラインバスですね！"),
+                FlexSendMessage(alt_text='バス利用目的', contents = openJsonFile('json/bus_purpose.json'))
+            ]
         )
         bus_select_data[1] = 2
 
@@ -120,10 +120,11 @@ def on_postback(event):
         print(event.postback.data)
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(
-                alt_text='municipal_bus',
-                text = "市バスですね！"
-            )
+            [
+                TextSendMessage(alt_text='municipal_bus',text = "市バスですね！"),
+                FlexSendMessage(alt_text='バス利用目的', contents = openJsonFile('json/bus_purpose.json'))
+            ]
+            
         )
         bus_select_data[1] = 1
     
