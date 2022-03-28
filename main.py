@@ -37,6 +37,8 @@ def openJsonFile(filename):
         print(flex_message_json_dict)
         return flex_message_json_dict
 
+
+
 def sendMessage(event, type, contents):
     if type == "text":
         line_bot_api.reply_message(
@@ -79,27 +81,24 @@ def handle_message(event):
     if event.message.text == "京都女子大学の天気":
         weather = tnk.Weather(6110)
         print(weather)
-        sendMessage(event, "text", weather)
+        result_contents = TextSendMessage(text=weather)
+        # sendMessage(event, "text", weather)
 
     if event.message.text == "バスの時刻":
-        line_bot_api.reply_message(
-            event.reply_token,
-            FlexSendMessage(
-                alt_text='利用バス選択',
-                # contentsパラメタに, dict型の値を渡す
-                contents=openJsonFile('json/bus_option.json')
+        result_contents = FlexSendMessage(
+            alt_text='利用バス選択',
+            # contentsパラメタに, dict型の値を渡す
+            contents=openJsonFile('json/bus_option.json')
             )
-        )
-        
+
     if event.message.text == "テスト":
-        line_bot_api.reply_message(
-            event.reply_token,
-            FlexSendMessage(
-                alt_text='利用バス選択',
-                # contentsパラメタに, dict型の値を渡す
-                contents=openJsonFile('json/test.json')
-            )
+        result_contents = FlexSendMessage(
+            alt_text='利用バス選択',
+            # contentsパラメタに, dict型の値を渡す
+            contents=openJsonFile('json/test.json')
         )
+
+    line_bot_api.reply_message(event.reply_token,result_contents)
     print("完了")
 
 # ボタン押したときに動く関数
