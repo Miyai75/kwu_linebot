@@ -1,4 +1,8 @@
 # main.py
+import sity_bus1
+import sity_bus2
+import princess_bus1
+import princess_bus2
 # インスタンスメソッド化（初期化）
 class BusTime:
   def __init__(self, x, y, z = 0):
@@ -16,7 +20,6 @@ class BusTime:
     # print(self.z, "限に着くには...")
     # 市バスで登校
     if self.x == 1 and self.y == 1:
-      import sity_bus1
       sb1 = sity_bus1.sity_bus1(self.z)
       print("sb1の中身")
       print(sb1)
@@ -24,17 +27,14 @@ class BusTime:
       return sb1
     # 市バスで下校
     elif self.x == 2 and self.y == 1:
-      import sity_bus2
       sb2 = sity_bus2.sity_bus2()
       return sb2
     # プリンセスバスで登校
     elif self.x == 1 and self.y == 2:
-      import princess_bus1
       pb1 = princess_bus1.princess_bus1(self.z)
       return pb1
     # プリンセスバスで下校
     elif self.x == 2 and self.y == 2:
-      import princess_bus2
       pb2 = princess_bus2.princess_bus2()
       return pb2
     else:
@@ -42,7 +42,7 @@ class BusTime:
       return "----------ERROR----------"
 
       
-# bustime = BusTime(2,1,3)
-# print("関数で回したらどうなるやろ")
-# a = bustime.bus()
-# print(a)
+bustime = BusTime(2,1,3)
+print("関数で回したらどうなるやろ")
+a = bustime.bus()
+print(a)
