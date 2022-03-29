@@ -18,17 +18,17 @@ def sity_bus1(y):
     print()
 
     # 結果格納用リスト
-    listsb1 = []
+    textsb1 = ""
     for sb1 in sity_bus:
         if sb1[0] == y:
             print(sb1[1], "系統")
             print(sb1[2], "京都駅発～")
             print(sb1[3], "東山七条着")
             print(sb1)
-            text = f"{sb1[1]}系統\n{sb1[2]}京都駅発～\n{sb1[3]}東山七条着"
-            listsb1.append(text)
+            textsb1 = f"{sb1[1]}系統\n{sb1[2]}京都駅発～\n{sb1[3]}東山七条着\n\n"
+            
 
     print("がオススメです。")
-
-    return listsb1
+    textsb1 += "がオススメです。"
+    return textsb1
 

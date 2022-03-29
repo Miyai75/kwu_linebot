@@ -13,9 +13,6 @@ def sity_bus2():
     # リスト化する
     sity_bus = df[["系統","出発","到着"]].values
 
-    # 結果格納用リスト
-    listsb2 = []
-
     # print (sity_bus)
     # 現在時刻の取得
     dt_now = dt.datetime.now()
@@ -25,7 +22,7 @@ def sity_bus2():
     # print(y)
     print("市バスで下校するには...")
     print()
-
+    textsb2 = ""
     # foreach文を作成
     for sb2 in sity_bus:
         st1 = sb2[1] # 出発時刻
@@ -35,14 +32,15 @@ def sity_bus2():
         # print(st1)
         # print(st2)
         # print(st3)
-
+        
         if st1 > st2 and st1 < st3: # 現在時刻 < バスの出発時刻 < 現在時刻の20分後
             print(sb2[0], "系統")
             print(sb2[1], "東山七条発～")
             print(sb2[2], "京都駅着")
             print()
-            text = f"{sb2[0]}系統\n{sb2[1]}東山七条発～\n{sb2[2]}京都駅着"
-            listsb2.append(text)
+            textsb2 += f"{sb2[0]}系統\n{sb2[1]}東山七条発～\n{sb2[2]}京都駅着\n\n"
+
             
     print("がオススメです。")
-    return listsb2
+    textsb2 += "がオススメです。"
+    return textsb2

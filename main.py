@@ -30,7 +30,7 @@ handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
 bus_select_data = [0,0,0] # バスの結果を数値でデータ格納[登下校,バスの種類,何限]
 bus_select_data_text = ["","",""] # バスの結果をそのまま格納[登下校,バスの種類,何限]
-periods = {"first_period":1, "second_period":2, "third_period":3, "fourth_period":4, "fifth_period":5}
+periods_dict = {"first_period":1, "second_period":2, "third_period":3, "fourth_period":4, "fifth_period":5}
 
 
 # f = open('bus_option.json', 'r')
@@ -110,36 +110,30 @@ def on_postback(event):
         bus_select_data[1] = 1
         bus_select_data_text[1] = "市バス"
     
-    if event.postback.data == "first_period":
-        bus_result = whatPeriod("first_period")
-        # print(bus_result)
-        tmp = mergeText(bus_result[1])
-        print(tmp)
+    if event.postback.data in periods_dict:
+        bus_result = whatPeriod(event.postback.data)
         result_contents = TextSendMessage(text = bus_result[0])
+        
+    # if event.postback.data == "first_period":
+    #     bus_result = whatPeriod("first_period")
+    #     # print(bus_result)
+    #     result_contents = TextSendMessage(text = bus_result[0])
     
-    if event.postback.data == "second_period":
-        bus_result = whatPeriod("second_period")
-        tmp = mergeText(bus_result[1])
-        print(tmp)
-        result_contents = TextSendMessage(text = bus_result[0])        
+    # if event.postback.data == "second_period":
+    #     bus_result = whatPeriod("second_period")
+    #     result_contents = TextSendMessage(text = bus_result[0])        
     
-    if event.postback.data == "third_period":
-        bus_result = whatPeriod("third_period")
-        tmp = mergeText(bus_result[1])
-        print(tmp)
-        result_contents = TextSendMessage(text = bus_result[0])        
+    # if event.postback.data == "third_period":
+    #     bus_result = whatPeriod("third_period")
+    #     result_contents = TextSendMessage(text = bus_result[0])        
 
-    if event.postback.data == "fourth_period":
-        bus_result = whatPeriod("fourth_period")
-        tmp = mergeText(bus_result[1])
-        print(tmp)
-        result_contents = TextSendMessage(text = bus_result[0])            
+    # if event.postback.data == "fourth_period":
+    #     bus_result = whatPeriod("fourth_period")
+    #     result_contents = TextSendMessage(text = bus_result[0])            
 
-    if event.postback.data == "fifth_period":
-        bus_result = whatPeriod("fifth_period")
-        tmp = mergeText(bus_result[1])
-        print(tmp)
-        result_contents = TextSendMessage(text = bus_result[0])
+    # if event.postback.data == "fifth_period":
+    #     bus_result = whatPeriod("fifth_period")
+    #     result_contents = TextSendMessage(text = bus_result[0])
     
     print(bus_select_data)
     print(bus_select_data_text)
@@ -158,9 +152,9 @@ def openJsonFile(filename):
 # periodには何時限かが入るよ
 def whatPeriod(period):
     # 登校、何限かをbus_select_dataに代入
-    bus_select_data[0], bus_select_data[2] = 1, periods[period]
+    bus_select_data[0], bus_select_data[2] = 1, periods_dict[period]
     # 選んだ結果確認用テキストをbus_select_data_textに代入
-    bus_select_data_text[0], bus_select_data_text[2] = "登校", periods[period]
+    bus_select_data_text[0], bus_select_data_text[2] = "登校", periods_dict[period]
     print(bus_select_data)
     print(bus_select_data_text)
     # result_textに選択の最終確認のテキスト代入
@@ -172,14 +166,15 @@ def whatPeriod(period):
     bus_result = bus_tmp.bus()
     return result_text, bus_result
 
-def mergeText(listname):
-    text_contents = ""
-    for i in listname:
-        text_contents += i
-        text_contents += "\n\n"
+# def mergeText(listname):
+#     text_contents = ""
+#     for i in listname:
+#         text_contents += i
+#         text_contents += "\n\n"
     
-    print(text_contents)
-    return text_contents
+#     text_contents += "がオススメです！"
+#     print(text_contents)
+#     return text_contents
 
 
 
