@@ -1,8 +1,8 @@
 # main.py
-import sity_bus1
-import sity_bus2
-import princess_bus1
-import princess_bus2
+from basu import sity_bus1
+from basu import sity_bus2
+from basu import princess_bus1
+from basu import princess_bus2
 # インスタンスメソッド化（初期化）
 class BusTime:
   def __init__(self, x, y, z = 0):
@@ -42,7 +42,7 @@ class BusTime:
       return "----------ERROR----------"
 
       
-bustime = BusTime(2,1,3)
-print("関数で回したらどうなるやろ")
-a = bustime.bus()
-print(a)
+# bustime = BusTime(2,1,3)
+# print("関数で回したらどうなるやろ")
+# a = bustime.bus()
+# print(a)
