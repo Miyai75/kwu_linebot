@@ -4,7 +4,3 @@ beautifulsoup4
 requests
 pandas
 datetime
-sity_bus1
-sity_bus2
-princess_bus1
-princess_bus2
