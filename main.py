@@ -112,28 +112,8 @@ def on_postback(event):
     
     if event.postback.data in periods_dict:
         bus_result = whatPeriod(event.postback.data)
-        result_contents = TextSendMessage(text = bus_result[0])
-        
-    # if event.postback.data == "first_period":
-    #     bus_result = whatPeriod("first_period")
-    #     # print(bus_result)
-    #     result_contents = TextSendMessage(text = bus_result[0])
-    
-    # if event.postback.data == "second_period":
-    #     bus_result = whatPeriod("second_period")
-    #     result_contents = TextSendMessage(text = bus_result[0])        
-    
-    # if event.postback.data == "third_period":
-    #     bus_result = whatPeriod("third_period")
-    #     result_contents = TextSendMessage(text = bus_result[0])        
+        result_contents = [TextSendMessage(text = bus_result[0]),TextSendMessage(text = bus_result[1])]
 
-    # if event.postback.data == "fourth_period":
-    #     bus_result = whatPeriod("fourth_period")
-    #     result_contents = TextSendMessage(text = bus_result[0])            
-
-    # if event.postback.data == "fifth_period":
-    #     bus_result = whatPeriod("fifth_period")
-    #     result_contents = TextSendMessage(text = bus_result[0])
     
     print(bus_select_data)
     print(bus_select_data_text)
@@ -165,16 +145,6 @@ def whatPeriod(period):
     bus_tmp = bus.BusTime(bus_select_data[0],bus_select_data[1],bus_select_data[2])
     bus_result = bus_tmp.bus()
     return result_text, bus_result
-
-# def mergeText(listname):
-#     text_contents = ""
-#     for i in listname:
-#         text_contents += i
-#         text_contents += "\n\n"
-    
-#     text_contents += "がオススメです！"
-#     print(text_contents)
-#     return text_contents
 
 
 
