@@ -18,6 +18,7 @@ import pandas as pd
 from tenki import tenkii as tnk
 from basu import main as bus
 
+
 app = Flask(__name__)
 
 #環境変数取得
@@ -90,7 +91,7 @@ def handle_message(event):
 def on_postback(event):
 
     result_contents = TextSendMessage(text="hello")
-    
+
     if event.postback.data == "princess_line_bus":
         print(event.postback.data)
         result_contents = [
