@@ -5,14 +5,14 @@ import time
 
 def sity_bus2():
     # データフレームを読み込む
-    df = pd.read_csv("東山七条発.csv")
+    df = pd.read_csv("basu/東山七条発.csv")
 
     # 欠損値を削除する
     df = df.dropna()
 
     # リスト化する
     sity_bus = df[["系統","出発","到着"]].values
-    
+
     # 結果格納用リスト
     listsb2 = []
 

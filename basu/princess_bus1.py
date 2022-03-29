@@ -4,7 +4,7 @@ import datetime as dt
 
 def princess_bus1(y):
     # データフレームを読み込む
-    df = pd.read_csv("京都駅八条口.csv")
+    df = pd.read_csv("basu/京都駅八条口.csv")
 
     # 欠損値を削除する
     df = df.dropna()
@@ -14,7 +14,7 @@ def princess_bus1(y):
 
     # 結果格納用リスト
     listpb1 = []
-    
+
     # y = int(input("大学には何限目に着きたいですか？1～5を入力してください"))
     # print(y, "限に着くには...")
     # print()

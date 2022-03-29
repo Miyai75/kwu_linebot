@@ -4,7 +4,7 @@ import datetime as dt
 
 def sity_bus1(y):
     # データフレームを読み込む
-    df = pd.read_csv("京都駅発.csv", encoding='shift_jis')
+    df = pd.read_csv("basu/京都駅発.csv", encoding='shift_jis')
 
     # 欠損値を削除する
     df = df.dropna()

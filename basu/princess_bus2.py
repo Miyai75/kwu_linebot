@@ -5,7 +5,7 @@ import time
 
 def princess_bus2():
     # データフレームを読み込む
-    df = pd.read_csv("京都女子大学.csv")
+    df = pd.read_csv("basu/京都女子大学.csv")
 
     # 欠損値を削除する
     df = df.dropna()
