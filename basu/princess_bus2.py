@@ -36,7 +36,8 @@ def princess_bus2():
             print(pb2[0], "京都女子大学発～")
             print(pb2[1], "京都駅八条口着")
             print()
-            listpb2.append(pb2)
+            text = f"{pb2[0]}京都女子大学発～\n{pb2[1]}京都駅八条口着"
+            listpb2.append(text)
     print("がオススメです。")
 
     return listpb2

@@ -21,10 +21,11 @@ def princess_bus1(y):
 
     for pb1 in princess_bus:
         if pb1[0] == y:
-            # print(pb1[1], "京都駅八条口発～")
-            # print(pb1[2], "京都女子大学着")
+            print(pb1[1], "京都駅八条口発～")
+            print(pb1[2], "京都女子大学着")
             print()
-            listpb1.append(pb1)
+            text = f"{pb1[1]}京都駅八条口発～\n{pb1[2]}京都女子大学着"
+            listpb1.append(text)
     # print("がオススメです。")
 
     return listpb1

@@ -112,23 +112,33 @@ def on_postback(event):
     
     if event.postback.data == "first_period":
         bus_result = whatPeriod("first_period")
-        print(bus_result)
+        # print(bus_result)
+        tmp = mergeText(bus_result[1])
+        print(tmp)
         result_contents = TextSendMessage(text = bus_result[0])
     
     if event.postback.data == "second_period":
         bus_result = whatPeriod("second_period")
+        tmp = mergeText(bus_result[1])
+        print(tmp)
         result_contents = TextSendMessage(text = bus_result[0])        
     
     if event.postback.data == "third_period":
         bus_result = whatPeriod("third_period")
+        tmp = mergeText(bus_result[1])
+        print(tmp)
         result_contents = TextSendMessage(text = bus_result[0])        
 
     if event.postback.data == "fourth_period":
         bus_result = whatPeriod("fourth_period")
+        tmp = mergeText(bus_result[1])
+        print(tmp)
         result_contents = TextSendMessage(text = bus_result[0])            
 
     if event.postback.data == "fifth_period":
         bus_result = whatPeriod("fifth_period")
+        tmp = mergeText(bus_result[1])
+        print(tmp)
         result_contents = TextSendMessage(text = bus_result[0])
     
     print(bus_select_data)
@@ -144,17 +154,32 @@ def openJsonFile(filename):
         print(flex_message_json_dict)
         return flex_message_json_dict
 
-# ○○時限に登校するのを格納したバス用関数、テキストと時間を返す
+# ○○時限に登校するのを格納したバス用の関数、テキストと時間を返す
+# periodには何時限かが入るよ
 def whatPeriod(period):
+    # 登校、何限かをbus_select_dataに代入
     bus_select_data[0], bus_select_data[2] = 1, periods[period]
+    # 選んだ結果確認用テキストをbus_select_data_textに代入
     bus_select_data_text[0], bus_select_data_text[2] = "登校", periods[period]
     print(bus_select_data)
     print(bus_select_data_text)
+    # result_textに選択の最終確認のテキスト代入
     result_text = f"「{bus_select_data_text[1]}で{bus_select_data_text[2]}限に{bus_select_data_text[0]}」ですね！"
     print(result_text)
+
+    # bus_tmpにBusTimeのインスタンス化、resultに関数の結果代入
     bus_tmp = bus.BusTime(bus_select_data[0],bus_select_data[1],bus_select_data[2])
     bus_result = bus_tmp.bus()
     return result_text, bus_result
+
+def mergeText(listname):
+    text_contents = ""
+    for i in listname:
+        text_contents += i
+        text_contents += "\n\n"
+    
+    print(text_contents)
+    return text_contents
 
 
 

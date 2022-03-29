@@ -41,7 +41,8 @@ def sity_bus2():
             print(sb2[1], "東山七条発～")
             print(sb2[2], "京都駅着")
             print()
-            listsb2.append(sb2)
+            text = f"{sb2[0]}系統\n{sb2[1]}東山七条発～\n{sb2[2]}京都駅着"
+            listsb2.append(text)
             
     print("がオススメです。")
     return listsb2
