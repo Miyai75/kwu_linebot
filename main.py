@@ -57,11 +57,12 @@ def callback():
 # テキストメッセージを受け取った時に動く関数
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+    global search_bool
     print(event)
 
     result_contents = TextSendMessage(text="hello")
 
-    if search_bool == True:
+    if search_bool:
         classroom = b.kyousitu(event.message.text)
         result_contents = TextSendMessage(text = classroom)
         search_bool = False
