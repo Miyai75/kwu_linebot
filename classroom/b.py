@@ -20,14 +20,18 @@ def kyousitu(keyword):
             if match:
               #print(m)
               list.append(m)
+
     if not list:
         list.append("項目が見つかりませんでした")
+        result_text += "項目が見つかりませんでした"
+    else:
+        for data in list:
+            result_text += f"{data}\n"
+        result_text += f"\nの{len(list)}件見つかりました。"
+
     f.close()
     print(list)
 
-    for data in list:
-        result_text += f"{data}\n"
-    
-    result_text += f"\nの{len(list)}件見つかりました。"
+
     return result_text
 # kyousitu()
