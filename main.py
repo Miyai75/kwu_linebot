@@ -61,7 +61,7 @@ def handle_message(event):
 
     result_contents = TextSendMessage(text="hello")
 
-    if search_bool:
+    if search_bool == True:
         classroom = b.kyousitu(event.message.text)
         result_contents = TextSendMessage(text = classroom)
         search_bool = False
