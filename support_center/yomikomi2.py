@@ -38,7 +38,7 @@ def center(word):
             break
     
 
-    result_text = f"【センター名】\n{a[1]}\n【メールアドレス】\n{a[2]}\n【電話番号】\n{a[3]}\n【場所】\n{a[4]}"
+    result_text = f"【センター名】\n{a[1]}\n\n【メールアドレス】\n{a[2]}\n\n【電話番号】\n{a[3]}\n\n【場所】\n{a[4]}"
     
     return result_text#戻り値
 # print(center())

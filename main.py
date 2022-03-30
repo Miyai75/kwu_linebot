@@ -13,12 +13,10 @@ from linebot.models import (
 )
 import os
 import json
-# from basu import main as bs
-import pandas as pd
 from tenki import tenkii as tnk
 from basu import main as bus
 from support_center import yomikomi2 as sc
-
+from classroom import b
 app = Flask(__name__)
 
 #環境変数取得
@@ -32,7 +30,7 @@ bus_select_data = [0,0,0] # バスの結果を数値でデータ格納[登下校
 bus_select_data_text = ["","",""] # バスの結果をそのまま格納[登下校,バスの種類,何限]
 periods_dict = {"go_home":0, "first_period":1, "second_period":2, "third_period":3, "fourth_period":4, "fifth_period":5}
 support_list = ["履修", "進路", "インターンシップ", "奨学金", "学費", "各種証明書"]
-
+search_bool = False
 # f = open('bus_option.json', 'r')
 # flex_message_json_dict = json.load(f)
 # print(flex_message_json_dict)
@@ -63,6 +61,11 @@ def handle_message(event):
 
     result_contents = TextSendMessage(text="hello")
 
+    if search_bool:
+        classroom = b.kyousitu(event.message.text)
+        result_contents = TextSendMessage(text = classroom)
+        search_bool = False
+
     if event.message.text == "京都女子大学の天気":
         weather = tnk.Weather(6110)
         print(weather)
@@ -82,6 +85,10 @@ def handle_message(event):
                 TextSendMessage(text="進路 履修 インターンシップ 奨学金 各種証明書に関する対応窓口に関する情報を教えます！"),
                 TextSendMessage(text="知りたいことは何ですか?", quick_reply=QuickReply(items=items))
             ]
+
+    if event.message.text == "教室":
+        result_contents = TextSendMessage(text="教科名を入力してください")
+        search_bool = True
 
     if event.message.text in support_list:
         result_contents = [

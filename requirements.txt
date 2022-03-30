@@ -4,3 +4,7 @@ beautifulsoup4
 requests
 pandas
 datetime
+codecs
+csv
+imp
+re
