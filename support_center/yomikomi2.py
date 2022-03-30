@@ -36,7 +36,9 @@ def center():
         else:
             a = "いつでもどうぞ"
             break
-
     
-    return a#戻り値
+
+    result_text = f"【センター名】\n{a[1]}\n【メールアドレス】\n{a[2]}\n【電話番号】\n{a[3]}\n【場所】\n{a[4]}"
+    
+    return result_text#戻り値
 print(center())

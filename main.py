@@ -17,7 +17,7 @@ import json
 import pandas as pd
 from tenki import tenkii as tnk
 from basu import main as bus
-
+from support_center import yomikomi2 as sc
 
 app = Flask(__name__)
 
@@ -31,7 +31,7 @@ handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 bus_select_data = [0,0,0] # バスの結果を数値でデータ格納[登下校,バスの種類,何限]
 bus_select_data_text = ["","",""] # バスの結果をそのまま格納[登下校,バスの種類,何限]
 periods_dict = {"go_home":0, "first_period":1, "second_period":2, "third_period":3, "fourth_period":4, "fifth_period":5}
-
+support_list = ["履修", "進路", "インターンシップ", "奨学金", "学費", "各種証明書"]
 
 # f = open('bus_option.json', 'r')
 # flex_message_json_dict = json.load(f)
@@ -77,15 +77,20 @@ def handle_message(event):
             )
     
     if event.message.text == "大学生活に関する窓口":
+        items = [QuickReplyButton(action=MessageAction(label=f"{support}", text=f"{support}")) for support in support_list]
         result_contents = [
                 TextSendMessage(text="進路 履修 インターンシップ 奨学金 各種証明書に関する対応窓口に関する情報を教えます！"),
-                TextSendMessage(text="知りたいことは何ですか?")
+                TextSendMessage(text="知りたいことは何ですか?", quick_reply=QuickReply(items=items))
             
             ]
 
+    if event.message.text in support_list:
+        result_contents = [
+            TextSendMessage(text = f"{event.message.text}の情報はこちらになります！"),
+            TextSendMessage(text = sc.center())
+        ]
     if event.message.text == "テスト":
-        language_list = ["Ruby", "Python", "PHP", "Java", "C"]
-        items = [QuickReplyButton(action=MessageAction(label=f"{language}", text=f"{language}が好き")) for language in language_list]
+        items = [QuickReplyButton(action=MessageAction(label=f"{support}", text=f"{support}")) for support in support_list]
         result_contents = TextSendMessage(text="どの言語が好きですか？",quick_reply=QuickReply(items=items))
 
     line_bot_api.reply_message(event.reply_token,result_contents)
