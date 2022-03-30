@@ -1,8 +1,8 @@
 # yomikomi2.py
-
+import pandas as pd
 def center():
-    import pandas as pd
-    df = pd.read_csv("center2.csv")#csvファイルを読み込み
+
+    df = pd.read_csv("support_center/center2.csv")#csvファイルを読み込み
     #print(list(df.loc[1]))
 
     print("進路 履修 インターンシップ 奨学金 各種証明書に関する対応窓口に関する情報を教えます！")
