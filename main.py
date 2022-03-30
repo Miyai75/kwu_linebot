@@ -84,7 +84,9 @@ def handle_message(event):
             ]
 
     if event.message.text == "テスト":
-        result_contents = TextSendMessage(openJsonFile('json/quickreply.json'))
+        language_list = ["Ruby", "Python", "PHP", "Java", "C"]
+        items = [QuickReplyButton(action=MessageAction(label=f"{language}", text=f"{language}が好き")) for language in language_list]
+        result_contents = TextSendMessage(text="どの言語が好きですか？",quick_reply=QuickReply(items=items))
 
     line_bot_api.reply_message(event.reply_token,result_contents)
     print("完了")
