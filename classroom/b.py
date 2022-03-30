@@ -16,7 +16,7 @@ def kyousitu(keyword):
         # print(i)
         for m in i:
             match = re.search(keyword,m) #正規表現でキーワード検索をしています
-            print(match)
+            # print(match)
             if match:
               #print(m)
               list.append(m)

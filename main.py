@@ -89,7 +89,9 @@ def handle_message(event):
             ]
 
     if event.message.text == "教室":
-        result_contents = TextSendMessage(text="教科名を入力してください")
+        result_contents = [
+            FlexSendMessage(alt_text='教室検索モード', contents = openJsonFile('json/modeexp.json'))
+        ]
         print("教科名を入力してください")
         search_bool = True
         print(search_bool)

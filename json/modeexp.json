@@ -1,0 +1,64 @@
+{
+    "type": "bubble",
+    "header": {
+      "type": "box",
+      "layout": "vertical",
+      "contents": [
+        {
+          "type": "text",
+          "text": "教室検索モード",
+          "size": "xl",
+          "align": "center",
+          "decoration": "none",
+          "style": "normal",
+          "weight": "regular",
+          "color": "#FFFFFF"
+        }
+      ]
+    },
+    "hero": {
+      "type": "box",
+      "layout": "vertical",
+      "contents": [
+        {
+          "type": "text",
+          "text": "このモードでは教室を検索できます。\nこのメッセージの次に教科名を入力してください。",
+          "wrap": true,
+          "offsetTop": "none",
+          "align": "start",
+          "offsetStart": "none",
+          "offsetEnd": "none"
+        },
+        {
+          "type": "text",
+          "text": "調べ直したいときはもう一度リッチメニューから「教室」を選択するか「教室」と入力してください",
+          "wrap": true,
+          "offsetStart": "none",
+          "offsetEnd": "none"
+        }
+      ],
+      "margin": "xxl",
+      "borderWidth": "bold",
+      "cornerRadius": "none",
+      "offsetBottom": "none",
+      "offsetStart": "none",
+      "offsetEnd": "none",
+      "paddingAll": "md"
+    },
+    "body": {
+      "type": "box",
+      "layout": "vertical",
+      "contents": [
+        {
+          "type": "text",
+          "text": "例：「応用プログラミング」\n　　「仏教学」など",
+          "wrap": true
+        }
+      ]
+    },
+    "styles": {
+      "header": {
+        "backgroundColor": "#00B900"
+      }
+    }
+  }
