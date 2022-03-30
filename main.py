@@ -83,11 +83,11 @@ def handle_message(event):
                 TextSendMessage(text="知りたいことは何ですか?", quick_reply=QuickReply(items=items))
             ]
 
-    if event.message.text in support_list:
-        result_contents = [
-            TextSendMessage(text = f"{event.message.text}の情報はこちらになります！"),
-            TextSendMessage(text = sc.center(event.message.text))
-        ]
+    # if event.message.text in support_list:
+    #     result_contents = [
+    #         TextSendMessage(text = f"{event.message.text}の情報はこちらになります！"),
+    #         TextSendMessage(text = sc.center(event.message.text))
+    #     ]
 
     if event.message.text == "テスト":
         items = [QuickReplyButton(action=MessageAction(label=f"{support}", text=f"{support}")) for support in support_list]
