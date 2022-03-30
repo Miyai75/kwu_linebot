@@ -36,5 +36,7 @@ def center():
         else:
             a = "いつでもどうぞ"
             break
+
+    
     return a#戻り値
 print(center())

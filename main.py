@@ -9,7 +9,7 @@ from linebot.exceptions import (
     LineBotApiError, InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage, FlexSendMessage, PostbackEvent
+    MessageEvent, TextMessage, TextSendMessage, FlexSendMessage, PostbackEvent, QuickReplyButton, QuickReply
 )
 import os
 import json
@@ -75,13 +75,16 @@ def handle_message(event):
             # contentsパラメタに, dict型の値を渡す
             contents=openJsonFile('json/bus_option.json')
             )
+    
+    if event.message.text == "大学生活に関する窓口":
+        result_contents = [
+                TextSendMessage(text="進路 履修 インターンシップ 奨学金 各種証明書に関する対応窓口に関する情報を教えます！"),
+                TextSendMessage(text="知りたいことは何ですか?")
+            
+            ]
 
     if event.message.text == "テスト":
-        result_contents = FlexSendMessage(
-            alt_text='利用バス選択',
-            # contentsパラメタに, dict型の値を渡す
-            contents=openJsonFile('json/test.json')
-        )
+        result_contents = TextSendMessage(openJsonFile('json/quickreply.json'))
 
     line_bot_api.reply_message(event.reply_token,result_contents)
     print("完了")
@@ -131,8 +134,8 @@ def openJsonFile(filename):
         print(flex_message_json_dict)
         return flex_message_json_dict
 
-# ○○時限に登校するのを格納したバス用の関数、テキストと時間を返す
-# periodには何時限かが入るよ
+# 登下校のボタンからデータ受け取ってバスの関数を回して結果のテキストと時間を返す
+# periodにはperiods_dictのキーが入る
 def whatPeriod(period):
     if period != "go_home":
         # 登校、何限かをbus_select_dataに代入
