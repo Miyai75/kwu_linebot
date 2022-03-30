@@ -42,3 +42,5 @@ def princess_bus2():
     print("がオススメです。")
     textpb2 += "がオススメです。"
     return textpb2
+
+# print(princess_bus2())

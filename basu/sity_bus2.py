@@ -44,3 +44,5 @@ def sity_bus2():
     print("がオススメです。")
     textsb2 += "がオススメです。"
     return textsb2
+
+# print(sity_bus2())

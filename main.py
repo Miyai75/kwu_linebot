@@ -139,11 +139,9 @@ def whatPeriod(period):
         bus_select_data[0], bus_select_data[2] = 1, periods_dict[period]
         # 選んだ結果確認用テキストをbus_select_data_textに代入
         bus_select_data_text[0], bus_select_data_text[2] = "登校", periods_dict[period]
-        print(bus_select_data)
-        print(bus_select_data_text)
         # result_textに選択の最終確認のテキスト代入
         result_text = f"「{bus_select_data_text[1]}で{bus_select_data_text[2]}限に{bus_select_data_text[0]}」ですね！"
-        print(result_text)
+        
 
     
     else:
@@ -151,6 +149,10 @@ def whatPeriod(period):
         bus_select_data_text[0] = "下校"
         result_text = f"「{bus_select_data_text[1]}で{bus_select_data_text[0]}」ですね！"
 
+
+    print(bus_select_data)
+    print(bus_select_data_text)
+    print(result_text)
     # bus_tmpにBusTimeのインスタンス化、resultに関数の結果代入
     bus_tmp = bus.BusTime(bus_select_data[0],bus_select_data[1],bus_select_data[2])
     bus_result = bus_tmp.bus()

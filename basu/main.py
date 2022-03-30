@@ -42,7 +42,7 @@ class BusTime:
       return "----------ERROR----------"
 
       
-# bustime = BusTime(2,1,3)
+# bustime = BusTime(2,1,0)
 # print("関数で回したらどうなるやろ")
 # a = bustime.bus()
 # print(a)
