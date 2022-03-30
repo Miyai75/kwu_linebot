@@ -30,7 +30,7 @@ handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
 bus_select_data = [0,0,0] # バスの結果を数値でデータ格納[登下校,バスの種類,何限]
 bus_select_data_text = ["","",""] # バスの結果をそのまま格納[登下校,バスの種類,何限]
-periods_dict = {"first_period":1, "second_period":2, "third_period":3, "fourth_period":4, "fifth_period":5}
+periods_dict = {"go_home":0, "first_period":1, "second_period":2, "third_period":3, "fourth_period":4, "fifth_period":5}
 
 
 # f = open('bus_option.json', 'r')
@@ -110,6 +110,8 @@ def on_postback(event):
         bus_select_data[1] = 1
         bus_select_data_text[1] = "市バス"
     
+    # periods_dict = {"first_period":1, "second_period":2, "third_period":3, "fourth_period":4, "fifth_period":5}
+    # 上のdictのキーと押されたボタンのデータが一緒の時の結果をresult_contentsに代入
     if event.postback.data in periods_dict:
         bus_result = whatPeriod(event.postback.data)
         result_contents = [TextSendMessage(text = bus_result[0]),TextSendMessage(text = bus_result[1])]
@@ -131,15 +133,22 @@ def openJsonFile(filename):
 # ○○時限に登校するのを格納したバス用の関数、テキストと時間を返す
 # periodには何時限かが入るよ
 def whatPeriod(period):
-    # 登校、何限かをbus_select_dataに代入
-    bus_select_data[0], bus_select_data[2] = 1, periods_dict[period]
-    # 選んだ結果確認用テキストをbus_select_data_textに代入
-    bus_select_data_text[0], bus_select_data_text[2] = "登校", periods_dict[period]
-    print(bus_select_data)
-    print(bus_select_data_text)
-    # result_textに選択の最終確認のテキスト代入
-    result_text = f"「{bus_select_data_text[1]}で{bus_select_data_text[2]}限に{bus_select_data_text[0]}」ですね！"
-    print(result_text)
+    if period != "go_home":
+        # 登校、何限かをbus_select_dataに代入
+        bus_select_data[0], bus_select_data[2] = 1, periods_dict[period]
+        # 選んだ結果確認用テキストをbus_select_data_textに代入
+        bus_select_data_text[0], bus_select_data_text[2] = "登校", periods_dict[period]
+        print(bus_select_data)
+        print(bus_select_data_text)
+        # result_textに選択の最終確認のテキスト代入
+        result_text = f"「{bus_select_data_text[1]}で{bus_select_data_text[2]}限に{bus_select_data_text[0]}」ですね！"
+        print(result_text)
+
+    
+    else:
+        bus_select_data[0], bus_select_data[2] = 2, periods_dict[period]
+        bus_select_data_text[0] = "下校"
+        result_text = f"「{bus_select_data_text[1]}で{bus_select_data_text[0]}」ですね！"
 
     # bus_tmpにBusTimeのインスタンス化、resultに関数の結果代入
     bus_tmp = bus.BusTime(bus_select_data[0],bus_select_data[1],bus_select_data[2])
