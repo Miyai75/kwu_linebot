@@ -9,7 +9,7 @@ from linebot.exceptions import (
     LineBotApiError, InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage, FlexSendMessage, PostbackEvent, QuickReplyButton, QuickReply
+    MessageEvent, TextMessage, TextSendMessage, FlexSendMessage, PostbackEvent, QuickReplyButton, MessageAction, QuickReply
 )
 import os
 import json
