@@ -114,6 +114,7 @@ def on_postback(event):
     # 上のdictのキーと押されたボタンのデータが一緒の時の結果をresult_contentsに代入
     if event.postback.data in periods_dict:
         bus_result = whatPeriod(event.postback.data)
+        print(bus_result)
         result_contents = [TextSendMessage(text = bus_result[0]),TextSendMessage(text = bus_result[1])]
 
     
