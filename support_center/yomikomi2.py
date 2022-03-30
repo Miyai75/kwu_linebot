@@ -5,9 +5,9 @@ def center():
     df = pd.read_csv("support_center/center2.csv")#csvファイルを読み込み
     #print(list(df.loc[1]))
 
-    print("進路 履修 インターンシップ 奨学金 各種証明書に関する対応窓口に関する情報を教えます！")
-    word = input("知りたいことは何ですか?")
-    print("知りたいことは",word, "ですね")
+    # print("進路 履修 インターンシップ 奨学金 各種証明書に関する対応窓口に関する情報を教えます！")
+    # word = input("知りたいことは何ですか?")
+    # print("知りたいことは",word, "ですね")
 
     a = list#初期値
 

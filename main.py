@@ -81,7 +81,6 @@ def handle_message(event):
         result_contents = [
                 TextSendMessage(text="進路 履修 インターンシップ 奨学金 各種証明書に関する対応窓口に関する情報を教えます！"),
                 TextSendMessage(text="知りたいことは何ですか?", quick_reply=QuickReply(items=items))
-            
             ]
 
     if event.message.text in support_list:
@@ -89,6 +88,7 @@ def handle_message(event):
             TextSendMessage(text = f"{event.message.text}の情報はこちらになります！"),
             TextSendMessage(text = sc.center())
         ]
+
     if event.message.text == "テスト":
         items = [QuickReplyButton(action=MessageAction(label=f"{support}", text=f"{support}")) for support in support_list]
         result_contents = TextSendMessage(text="どの言語が好きですか？",quick_reply=QuickReply(items=items))
