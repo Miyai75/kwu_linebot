@@ -63,6 +63,7 @@ def handle_message(event):
     result_contents = TextSendMessage(text="hello")
 
     if search_bool:
+        print("bool値Trueです！！")
         classroom = b.kyousitu(event.message.text)
         result_contents = TextSendMessage(text = classroom)
         search_bool = False
@@ -89,7 +90,9 @@ def handle_message(event):
 
     if event.message.text == "教室":
         result_contents = TextSendMessage(text="教科名を入力してください")
+        print("教科名を入力してください")
         search_bool = True
+        print(search_bool)
 
     if event.message.text in support_list:
         result_contents = [

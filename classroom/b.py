@@ -8,7 +8,7 @@ def kyousitu(keyword):
 
     list =[]
     result_text = ""
-    f = codecs.open('output.csv', 'r','utf-8')
+    f = codecs.open('classroom/output.csv', 'r','utf-8')
 
     dataReader = csv.reader(f) #csvreaderはデフォルトで、列はカンマ、行は\n で分割される。
     # keyword = input('教科名を入力してください : ')
