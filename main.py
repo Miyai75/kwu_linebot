@@ -86,7 +86,7 @@ def handle_message(event):
     if event.message.text in support_list:
         result_contents = [
             TextSendMessage(text = f"{event.message.text}の情報はこちらになります！"),
-            TextSendMessage(text = sc.center())
+            TextSendMessage(text = sc.center(event.message.text))
         ]
 
     if event.message.text == "テスト":

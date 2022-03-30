@@ -1,6 +1,6 @@
 # yomikomi2.py
 import pandas as pd
-def center():
+def center(word):
 
     df = pd.read_csv("support_center/center2.csv")#csvファイルを読み込み
     #print(list(df.loc[1]))
