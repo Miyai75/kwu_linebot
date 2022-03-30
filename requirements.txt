@@ -4,6 +4,3 @@ beautifulsoup4
 requests
 pandas
 datetime
-csv
-imp
-re
