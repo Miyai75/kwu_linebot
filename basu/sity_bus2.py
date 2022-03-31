@@ -40,9 +40,13 @@ def sity_bus2():
             print()
             textsb2 += f"{sb2[0]}系統\n{sb2[1]}東山七条発～\n{sb2[2]}京都駅着\n\n"
 
-            
-    print("がオススメです。")
-    textsb2 += "がオススメです。"
+    
+    if textsb2 == "":
+        textsb2 += "項目が見つかりませんでした"
+    else:
+        print("がオススメです。")
+        textsb2 += "がオススメです。"
+
     return textsb2
 
 # print(sity_bus2())

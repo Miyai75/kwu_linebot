@@ -96,6 +96,7 @@ def handle_message(event):
         search_bool = True
         print(search_bool)
 
+    # ユーザーが送ったメッセージがsupport_listに含まれていたら反応する
     if event.message.text in support_list:
         result_contents = [
             TextSendMessage(text = f"{event.message.text}の情報はこちらになります！"),
