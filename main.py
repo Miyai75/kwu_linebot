@@ -30,6 +30,7 @@ bus_select_data = [0,0,0] # バスの結果を数値でデータ格納[登下校
 bus_select_data_text = ["","",""] # バスの結果をそのまま格納[登下校,バスの種類,何限]
 periods_dict = {"go_home":0, "first_period":1, "second_period":2, "third_period":3, "fourth_period":4, "fifth_period":5}
 support_list = ["履修", "進路", "インターンシップ", "奨学金", "学費", "各種証明書"]
+semester = ["前期","後期"]
 search_bool = False
 # f = open('bus_option.json', 'r')
 # flex_message_json_dict = json.load(f)
@@ -89,8 +90,10 @@ def handle_message(event):
             ]
 
     if event.message.text == "教室":
+        items = [QuickReplyButton(action=MessageAction(label=f"{sem}", text=f"{sem}")) for sem in semester]
         result_contents = [
-            FlexSendMessage(alt_text='教室検索モード', contents = openJsonFile('json/modeexp.json'))
+            FlexSendMessage(alt_text='教室検索モード', contents = openJsonFile('json/modeexp.json')),
+            TextSendMessage(text = "学期を選択してください", quick_reply=QuickReply(items=items))
         ]
         print("教科名を入力してください")
         search_bool = True
