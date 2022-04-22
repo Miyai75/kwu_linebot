@@ -63,6 +63,7 @@ def handle_message(event):
 
     result_contents = TextSendMessage(text="hello")
 
+    # 教室検索モード
     if search_bool:
         print("bool値Trueです！！")
         classroom = b.kyousitu(event.message.text)
@@ -81,7 +82,17 @@ def handle_message(event):
             # contentsパラメタに, dict型の値を渡す
             contents=openJsonFile('json/bus_option.json')
             )
-    
+
+    if event.message.text == "教室":
+        items = [QuickReplyButton(action=MessageAction(label=f"{sem}", text=f"{sem}")) for sem in semester]
+        result_contents = [
+            FlexSendMessage(alt_text='教室検索モード', contents = openJsonFile('json/modeexp.json'))
+            #TextSendMessage(text = "学期を選択してください", quick_reply=QuickReply(items=items))
+        ]
+        print("教科名を入力してください")
+        search_bool = True
+        print(search_bool)   
+
     if event.message.text == "大学生活に関する窓口":
         items = [QuickReplyButton(action=MessageAction(label=f"{support}", text=f"{support}")) for support in support_list]
         result_contents = [
@@ -89,15 +100,6 @@ def handle_message(event):
                 TextSendMessage(text="知りたいことは何ですか?", quick_reply=QuickReply(items=items))
             ]
 
-    if event.message.text == "教室":
-        items = [QuickReplyButton(action=MessageAction(label=f"{sem}", text=f"{sem}")) for sem in semester]
-        result_contents = [
-            FlexSendMessage(alt_text='教室検索モード', contents = openJsonFile('json/modeexp.json')),
-            TextSendMessage(text = "学期を選択してください", quick_reply=QuickReply(items=items))
-        ]
-        print("教科名を入力してください")
-        search_bool = True
-        print(search_bool)
 
     # ユーザーが送ったメッセージがsupport_listに含まれていたら反応する
     if event.message.text in support_list:
