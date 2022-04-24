@@ -16,7 +16,7 @@ import json
 from tenki import tenkii as tnk
 from basu import main as bus
 from support_center import yomikomi2 as sc
-from classroom import b
+from classroom.b import SerchClass
 app = Flask(__name__)
 
 #環境変数取得
@@ -65,8 +65,13 @@ def handle_message(event):
 
     # 教室検索モード
     if search_bool:
+        if event.message.text in semester:
+            sem_result = SerchClass.kyousitu(event.message.text)
+            print(sem_result)    
+
         print("bool値Trueです！！")
-        classroom = b.kyousitu(event.message.text)
+        classroom = SerchClass.kyousitu(event.message.text, sem_result)
+        print(classroom)
         result_contents = TextSendMessage(text = classroom)
         search_bool = False
 
@@ -86,8 +91,8 @@ def handle_message(event):
     if event.message.text == "教室":
         items = [QuickReplyButton(action=MessageAction(label=f"{sem}", text=f"{sem}")) for sem in semester]
         result_contents = [
-            FlexSendMessage(alt_text='教室検索モード', contents = openJsonFile('json/modeexp.json'))
-            #TextSendMessage(text = "学期を選択してください", quick_reply=QuickReply(items=items))
+            FlexSendMessage(alt_text='教室検索モード', contents = openJsonFile('json/modeexp.json')),
+            TextSendMessage(text = "学期を選択してください", quick_reply=QuickReply(items=items))
         ]
         print("教科名を入力してください")
         search_bool = True
