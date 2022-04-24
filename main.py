@@ -65,15 +65,15 @@ def handle_message(event):
 
     # 教室検索モード
     if search_bool:
+        print("bool値Trueです！！")
         if event.message.text in semester:
             sem_result = SerchClass.kyousitu(event.message.text)
             print(sem_result)    
-
-        print("bool値Trueです！！")
-        classroom = SerchClass.kyousitu(event.message.text, sem_result)
-        print(classroom)
-        result_contents = TextSendMessage(text = classroom)
-        search_bool = False
+        else:
+            classroom = SerchClass.kyousitu(event.message.text, sem_result)
+            print(classroom)
+            result_contents = TextSendMessage(text = classroom)
+            search_bool = False
 
     if event.message.text == "京都女子大学の天気":
         weather = tnk.Weather(6110)
