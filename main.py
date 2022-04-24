@@ -61,6 +61,7 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     global search_bool
+    global sem_result
     print(event)
 
     result_contents = TextSendMessage(text="hello")
