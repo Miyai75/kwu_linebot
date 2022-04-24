@@ -72,6 +72,10 @@ def handle_message(event):
         if event.message.text in semester:
             print(sem_result)
             sem_result = sclass.kyousitu(event.message.text)
+            result_contents = [
+                TextSendMessage(text = f"{event.message.text}ですね！"),
+                TextSendMessage(text = "続いて調べたい教科のキーワードを入力してください")
+            ]
             print(sem_result)    
         else:
             classroom = sclass.kyousitu(event.message.text, sem_result)
