@@ -32,6 +32,8 @@ periods_dict = {"go_home":0, "first_period":1, "second_period":2, "third_period"
 support_list = ["履修", "進路", "インターンシップ", "奨学金", "学費", "各種証明書"]
 semester = ["前期","後期"]
 search_bool = False
+sclass = SerchClass()
+sem_result = sclass.kyousitu("前期")
 # f = open('bus_option.json', 'r')
 # flex_message_json_dict = json.load(f)
 # print(flex_message_json_dict)
@@ -67,10 +69,11 @@ def handle_message(event):
     if search_bool:
         print("bool値Trueです！！")
         if event.message.text in semester:
-            sem_result = SerchClass.kyousitu(event.message.text)
+            print(sem_result)
+            sem_result = sclass.kyousitu(event.message.text)
             print(sem_result)    
         else:
-            classroom = SerchClass.kyousitu(event.message.text, sem_result)
+            classroom = sclass.kyousitu(event.message.text, sem_result)
             print(classroom)
             result_contents = TextSendMessage(text = classroom)
             search_bool = False
