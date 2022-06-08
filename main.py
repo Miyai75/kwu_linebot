@@ -62,7 +62,7 @@ def callback():
 # テキストメッセージを受け取った時に動く関数
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-
+    print("受け取ったよ！")
     result_contents = TextSendMessage(text=event.message.text)
     line_bot_api.reply_message(event.reply_token,result_contents)
     print("完了")
