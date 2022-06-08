@@ -11,7 +11,8 @@ from linebot.exceptions import (
     LineBotApiError, InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage, FlexSendMessage, PostbackEvent, QuickReplyButton, MessageAction, QuickReply
+    MessageEvent, TextMessage, TextSendMessage, FlexSendMessage, PostbackEvent,
+    QuickReplyButton, MessageAction, QuickReply, LocationAction
 )
 import os
 import json
@@ -130,7 +131,7 @@ def handle_message(event):
         result_contents = TextSendMessage(text="どの言語が好きですか？",quick_reply=QuickReply(items=items))
     
     if event.message.text == "位置情報":
-        items=QuickReplyButton(action=MessageAction(type="location",label="Location"))
+        items=[QuickReplyButton(action=LocationAction(label="Location"))]
         result_contents = [TextSendMessage(text="位置情報ください",quick_reply=QuickReply(items=items))]
 
     line_bot_api.reply_message(event.reply_token,result_contents)
