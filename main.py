@@ -180,11 +180,10 @@ def handle_location(event):
     result_contents = [
         TextSendMessage(text="ありがとう、愛してるよ"),
         TextSendMessage(text=f"緯度が{event.message.latitude}だね…"),
-        TextSendMessage(text=f"経度が{event.message.longitude}だね…")
+        TextSendMessage(text=f"経度が{event.message.longitude}だね…"),
+        TextSendMessage(text=f"住所は{event.message.address}なんだね")
         ]
     print(event)
-    print(event.message.latitude)
-    print(event.message.longitude)
     line_bot_api.reply_message(event.reply_token,result_contents)
 
 
