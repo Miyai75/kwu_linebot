@@ -1,4 +1,5 @@
 
+from cProfile import label
 from cgitb import text
 from flask import Flask, request, abort
 from waitress import serve
@@ -69,8 +70,6 @@ def handle_message(event):
     global sem_result
     print(event)
 
-    
-
     # 教室検索モード
     if search_bool:
         print("bool値Trueです！！")
@@ -130,6 +129,10 @@ def handle_message(event):
         items = [QuickReplyButton(action=MessageAction(label=f"{support}", text=f"{support}")) for support in support_list]
         result_contents = TextSendMessage(text="どの言語が好きですか？",quick_reply=QuickReply(items=items))
     
+    if event.message.text == "位置情報":
+        items=[QuickReplyButton(action=MessageAction(type="location",label="Location"))]
+        result_contents = [TextSendMessage(text="位置情報ください",quick_reply=QuickReply(items=items))]
+        
     line_bot_api.reply_message(event.reply_token,result_contents)
     print("完了")
 
