@@ -1,6 +1,7 @@
 
 from cgitb import text
 from flask import Flask, request, abort
+from waitress import serve
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -17,6 +18,7 @@ from tenki import tenkii as tnk
 from basu import main as bus
 from support_center import yomikomi2 as sc
 from classroom.b import SerchClass
+
 app = Flask(__name__)
 
 #環境変数取得
@@ -207,4 +209,5 @@ def whatPeriod(period):
 if __name__ == "__main__":
 #    app.run()
     port = int(os.getenv("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
+    # app.run(host="0.0.0.0", port=port)
+    serve(app, host="0.0.0.0",port = port)
