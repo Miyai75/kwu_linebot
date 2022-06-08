@@ -64,74 +64,74 @@ def callback():
 def handle_message(event):
     print("受け取ったよ！")
     result_contents = TextSendMessage(text=event.message.text)
+    
+    global search_bool
+    global sem_result
+    print(event)
+
+    
+
+    # 教室検索モード
+    if search_bool:
+        print("bool値Trueです！！")
+        if event.message.text in semester:
+            print(sem_result)
+            sem_result = sclass.kyousitu(event.message.text)
+            result_contents = [
+                TextSendMessage(text = f"{event.message.text}ですね！"),
+                TextSendMessage(text = "続いて調べたい教科のキーワードを入力してください")
+            ]
+            print(sem_result)    
+        else:
+            classroom = sclass.kyousitu(event.message.text, sem_result)
+            print(classroom)
+            result_contents = TextSendMessage(text = classroom)
+            search_bool = False
+
+    if event.message.text == "京都女子大学の天気":
+        weather = tnk.Weather(6110)
+        print(weather)
+        result_contents = TextSendMessage(text=weather)
+        # sendMessage(event, "text", weather)
+
+    if event.message.text == "バスの時刻":
+        result_contents = FlexSendMessage(
+            alt_text='利用バス選択',
+            # contentsパラメタに, dict型の値を渡す
+            contents=openJsonFile('json/bus_option.json')
+            )
+
+    if event.message.text == "教室":
+        items = [QuickReplyButton(action=MessageAction(label=f"{sem}", text=f"{sem}")) for sem in semester]
+        result_contents = [
+            FlexSendMessage(alt_text='教室検索モード', contents = openJsonFile('json/modeexp.json')),
+            TextSendMessage(text = "学期を選択してください", quick_reply=QuickReply(items=items))
+        ]
+        print("教科名を入力してください")
+        search_bool = True
+        print(search_bool)   
+
+    if event.message.text == "大学生活に関する窓口":
+        items = [QuickReplyButton(action=MessageAction(label=f"{support}", text=f"{support}")) for support in support_list]
+        result_contents = [
+                TextSendMessage(text="進路 履修 インターンシップ 奨学金 各種証明書に関する対応窓口に関する情報を教えます！"),
+                TextSendMessage(text="知りたいことは何ですか?", quick_reply=QuickReply(items=items))
+            ]
+
+
+    # ユーザーが送ったメッセージがsupport_listに含まれていたら反応する
+    if event.message.text in support_list:
+        result_contents = [
+            TextSendMessage(text = f"{event.message.text}の情報はこちらになります！"),
+            TextSendMessage(text = sc.center(event.message.text))
+        ]
+
+    if event.message.text == "テスト":
+        items = [QuickReplyButton(action=MessageAction(label=f"{support}", text=f"{support}")) for support in support_list]
+        result_contents = TextSendMessage(text="どの言語が好きですか？",quick_reply=QuickReply(items=items))
+    
     line_bot_api.reply_message(event.reply_token,result_contents)
     print("完了")
-    """
-        global search_bool
-        global sem_result
-        print(event)
-
-        
-
-        # 教室検索モード
-        if search_bool:
-            print("bool値Trueです！！")
-            if event.message.text in semester:
-                print(sem_result)
-                sem_result = sclass.kyousitu(event.message.text)
-                result_contents = [
-                    TextSendMessage(text = f"{event.message.text}ですね！"),
-                    TextSendMessage(text = "続いて調べたい教科のキーワードを入力してください")
-                ]
-                print(sem_result)    
-            else:
-                classroom = sclass.kyousitu(event.message.text, sem_result)
-                print(classroom)
-                result_contents = TextSendMessage(text = classroom)
-                search_bool = False
-
-        if event.message.text == "京都女子大学の天気":
-            weather = tnk.Weather(6110)
-            print(weather)
-            result_contents = TextSendMessage(text=weather)
-            # sendMessage(event, "text", weather)
-
-        if event.message.text == "バスの時刻":
-            result_contents = FlexSendMessage(
-                alt_text='利用バス選択',
-                # contentsパラメタに, dict型の値を渡す
-                contents=openJsonFile('json/bus_option.json')
-                )
-
-        if event.message.text == "教室":
-            items = [QuickReplyButton(action=MessageAction(label=f"{sem}", text=f"{sem}")) for sem in semester]
-            result_contents = [
-                FlexSendMessage(alt_text='教室検索モード', contents = openJsonFile('json/modeexp.json')),
-                TextSendMessage(text = "学期を選択してください", quick_reply=QuickReply(items=items))
-            ]
-            print("教科名を入力してください")
-            search_bool = True
-            print(search_bool)   
-
-        if event.message.text == "大学生活に関する窓口":
-            items = [QuickReplyButton(action=MessageAction(label=f"{support}", text=f"{support}")) for support in support_list]
-            result_contents = [
-                    TextSendMessage(text="進路 履修 インターンシップ 奨学金 各種証明書に関する対応窓口に関する情報を教えます！"),
-                    TextSendMessage(text="知りたいことは何ですか?", quick_reply=QuickReply(items=items))
-                ]
-
-
-        # ユーザーが送ったメッセージがsupport_listに含まれていたら反応する
-        if event.message.text in support_list:
-            result_contents = [
-                TextSendMessage(text = f"{event.message.text}の情報はこちらになります！"),
-                TextSendMessage(text = sc.center(event.message.text))
-            ]
-
-        if event.message.text == "テスト":
-            items = [QuickReplyButton(action=MessageAction(label=f"{support}", text=f"{support}")) for support in support_list]
-            result_contents = TextSendMessage(text="どの言語が好きですか？",quick_reply=QuickReply(items=items))
-        """
 
 
 # ボタン押したときに動く関数
