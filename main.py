@@ -139,7 +139,7 @@ def handle_message(event):
 def on_postback(event):
 
     result_contents = TextSendMessage(text="hello")
-
+    print(event)
     if event.postback.data == "princess_line_bus":
         print(event.postback.data)
         result_contents = [
