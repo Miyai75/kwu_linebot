@@ -174,10 +174,17 @@ def on_postback(event):
     print(bus_select_data_text)
     line_bot_api.reply_message(event.reply_token,result_contents)
 
+#位置情報を受け取った時
 @handler.add(MessageEvent, message=LocationMessage)
 def handle_location(event):
-    result_contents = TextSendMessage(text="ありがとう、愛してるよ")
+    result_contents = [
+        TextSendMessage(text="ありがとう、愛してるよ"),
+        TextSendMessage(text=f"緯度が{event.message.latitude}だね…"),
+        TextSendMessage(text=f"経度が{event.message.longitude}だね…")
+        ]
     print(event)
+    print(event.message.latitude)
+    print(event.message.longitude)
     line_bot_api.reply_message(event.reply_token,result_contents)
 
 
