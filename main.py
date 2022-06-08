@@ -12,7 +12,7 @@ from linebot.exceptions import (
 )
 from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage, FlexSendMessage, PostbackEvent,
-    QuickReplyButton, MessageAction, QuickReply, LocationAction
+    QuickReplyButton, MessageAction, QuickReply, LocationAction, LocationMessage
 )
 import os
 import json
@@ -173,7 +173,14 @@ def on_postback(event):
     print(bus_select_data)
     print(bus_select_data_text)
     line_bot_api.reply_message(event.reply_token,result_contents)
-    
+
+@handler.add(MessageEvent, message=LocationMessage)
+def handle_location(event):
+    result_contents = TextSendMessage(text="ありがとう、愛してるよ")
+    print(event)
+    line_bot_api.reply_message(event.reply_token,result_contents)
+
+
 # FlexMessageの用意
 # ファイルを読み込んだ変数を返す関数
 def openJsonFile(filename):
