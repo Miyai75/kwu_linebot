@@ -22,9 +22,11 @@ def get_weather_from_location(original_location):
     # 京女の天気
     if location[0] == '605-8501':
       location_url = 'https://weather.yahoo.co.jp/weather/26/6110/26105.html'
+      original_location = "京都女子大学"
     # それ以外の現在地の天気
     else:
       location_url = content.find('a').get('href')
+      original_location = "現在地"
     
     r = requests.get(location_url)
     print(r)
