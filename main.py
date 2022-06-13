@@ -107,15 +107,15 @@ def handle_message(event):
         items = [QuickReplyButton(action=MessageAction(label=f"{loc}", text=f"{loc}の天気")) for loc in location_list]
         result_contents = [TextSendMessage(text = "知りたい場所を選んでください",quick_reply=QuickReply(items=items))]
 
-    if event.message.text in location_list:
-        if event.message.text == "京都女子大学の天気":
-            weather = tnk.Weather(6110)
-            print(weather)
-            result_contents = TextSendMessage(text=weather)
-            # sendMessage(event, "text", weather)
-        else:
-            items=[QuickReplyButton(action=LocationAction(label="Location"))]
-            result_contents = [TextSendMessage(text="位置情報ください",quick_reply=QuickReply(items=items))]
+    if event.message.text == "京都女子大学の天気":
+        weather = tnk.Weather(6110)
+        print(weather)
+        result_contents = TextSendMessage(text=weather)
+        # sendMessage(event, "text", weather)
+    
+    if event.message.text == "現在地の天気":
+        items=[QuickReplyButton(action=LocationAction(label="Location"))]
+        result_contents = [TextSendMessage(text="位置情報ください",quick_reply=QuickReply(items=items))]
 
 
 
