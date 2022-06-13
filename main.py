@@ -108,7 +108,7 @@ def handle_message(event):
         result_contents = [TextSendMessage(text = "知りたい場所を選んでください",quick_reply=QuickReply(items=items))]
 
     if event.message.text == "京都女子大学の天気":
-        weather = tnk.Weather(6110)
+        weather = tnk2.get_weather_from_location('605-8501')
         print(weather)
         result_contents = TextSendMessage(text=weather)
         # sendMessage(event, "text", weather)
@@ -199,8 +199,6 @@ def handle_location(event):
     print(weather2)
     result_contents = [
         TextSendMessage(text="ありがとう、愛してるよ"),
-        TextSendMessage(text=f"緯度が{event.message.latitude}だね…"),
-        TextSendMessage(text=f"経度が{event.message.longitude}だね…"),
         TextSendMessage(text=f"住所は{event.message.address}なんだね"),
         TextSendMessage(text=weather2)
         ]

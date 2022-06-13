@@ -14,11 +14,18 @@ def get_weather_from_location(original_location):
   content = soup.find(class_="serch-table")
   print(content)
 
+
   try:
     # 2回目のスクレイピングで用いるURLを得る
     # location_url = "http:" + content.find('a').get('href')
-    location_url = content.find('a').get('href')
-    print(location_url)
+    
+    # 京女の天気
+    if location[0] == '605-8501':
+      location_url = 'https://weather.yahoo.co.jp/weather/26/6110/26105.html'
+    # それ以外の現在地の天気
+    else:
+      location_url = content.find('a').get('href')
+    
     r = requests.get(location_url)
     print(r)
     soup = BeautifulSoup(r.text, 'html.parser')
@@ -41,7 +48,9 @@ def get_weather_from_location(original_location):
     result = ('{}\nの今日の天気は\n'.format(original_location) + '\n'.join(result) + '\nです。')
 
   except AttributeError:
+    print(location_url)
     result = "該当がありませんでした。"
+    
 
   return result
 
