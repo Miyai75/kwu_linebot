@@ -17,9 +17,11 @@ from linebot.models import (
 import os
 import json
 from tenki import tenkii as tnk
+from tenki import weather2 as tnk2
 from basu import main as bus
 from support_center import yomikomi2 as sc
 from classroom.b import SerchClass
+
 
 app = Flask(__name__)
 
@@ -34,6 +36,7 @@ bus_select_data = [0,0,0] # バスの結果を数値でデータ格納[登下校
 bus_select_data_text = ["","",""] # バスの結果をそのまま格納[登下校,バスの種類,何限]
 periods_dict = {"go_home":0, "first_period":1, "second_period":2, "third_period":3, "fourth_period":4, "fifth_period":5}
 support_list = ["履修", "進路", "インターンシップ", "奨学金", "学費", "各種証明書"]
+location_list =["京都女子大学", "現在地"]
 semester = ["前期","後期"]
 search_bool = False
 sclass = SerchClass()
@@ -87,20 +90,8 @@ def handle_message(event):
             print(classroom)
             result_contents = TextSendMessage(text = classroom)
             search_bool = False
-
-    if event.message.text == "京都女子大学の天気":
-        weather = tnk.Weather(6110)
-        print(weather)
-        result_contents = TextSendMessage(text=weather)
-        # sendMessage(event, "text", weather)
-
-    if event.message.text == "バスの時刻":
-        result_contents = FlexSendMessage(
-            alt_text='利用バス選択',
-            # contentsパラメタに, dict型の値を渡す
-            contents=openJsonFile('json/bus_option.json')
-            )
-
+    
+    # 教室検索
     if event.message.text == "教室":
         items = [QuickReplyButton(action=MessageAction(label=f"{sem}", text=f"{sem}")) for sem in semester]
         result_contents = [
@@ -109,7 +100,34 @@ def handle_message(event):
         ]
         print("教科名を入力してください")
         search_bool = True
-        print(search_bool)   
+        print(search_bool)  
+
+    # 天気
+    if event.message.text == "天気":
+        items = [QuickReplyButton(action=MessageAction(label=f"{loc}", text=f"{loc}の天気")) for loc in location_list]
+        result_contents = [TextSendMessage(text = "知りたい場所を選んでください",quick_reply=QuickReply(items=items))]
+
+    if event.message.text in location_list:
+        if event.message.text == "京都女子大学の天気":
+            weather = tnk.Weather(6110)
+            print(weather)
+            result_contents = TextSendMessage(text=weather)
+            # sendMessage(event, "text", weather)
+        else:
+            items=[QuickReplyButton(action=LocationAction(label="Location"))]
+            result_contents = [TextSendMessage(text="位置情報ください",quick_reply=QuickReply(items=items))]
+
+
+
+
+    if event.message.text == "バスの時刻":
+        result_contents = FlexSendMessage(
+            alt_text='利用バス選択',
+            # contentsパラメタに, dict型の値を渡す
+            contents=openJsonFile('json/bus_option.json')
+            )
+
+ 
 
     if event.message.text == "大学生活に関する窓口":
         items = [QuickReplyButton(action=MessageAction(label=f"{support}", text=f"{support}")) for support in support_list]
@@ -177,11 +195,14 @@ def on_postback(event):
 #位置情報を受け取った時
 @handler.add(MessageEvent, message=LocationMessage)
 def handle_location(event):
+    weather2 = tnk2.get_weather_from_location(event.message.address)
+    print(weather2)
     result_contents = [
         TextSendMessage(text="ありがとう、愛してるよ"),
         TextSendMessage(text=f"緯度が{event.message.latitude}だね…"),
         TextSendMessage(text=f"経度が{event.message.longitude}だね…"),
-        TextSendMessage(text=f"住所は{event.message.address}なんだね")
+        TextSendMessage(text=f"住所は{event.message.address}なんだね"),
+        TextSendMessage(text=weather2)
         ]
     print(event)
     line_bot_api.reply_message(event.reply_token,result_contents)
